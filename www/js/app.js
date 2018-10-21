@@ -8,10 +8,10 @@ animateApp.config(function($routeProvider) {
     	})
       .when('/registro', {
     		templateUrl: 'page-registro.html',
-            controller: 'aboutController'
+            controller: 'registroController'
     	})
-      .when('/about', {
-    		templateUrl: 'page-about.html',
+      .when('/sucursales', {
+    		templateUrl: 'page-sucursales.html',
             controller: 'aboutController'
     	})
     	.when('/contact', {
@@ -27,6 +27,10 @@ animateApp.controller('mainController', function($scope) {
 
 animateApp.controller('aboutController', function($scope) {
     $scope.pageClass = 'page-about';
+});
+
+animateApp.controller('registroController', function($scope) {
+    $scope.pageClass = 'page-home';
 });
 
 animateApp.controller('contactController', function($scope) {
