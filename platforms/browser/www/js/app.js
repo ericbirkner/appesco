@@ -29,8 +29,59 @@ animateApp.controller('aboutController', function($scope) {
     $scope.pageClass = 'page-about';
 });
 
-animateApp.controller('registroController', function($scope) {
+animateApp.controller('registroController', function($scope, $http, $location) {
     $scope.pageClass = 'page-home';
+	$scope.registro = function() {
+		
+        if($scope.password.length<6){
+			alert('la password debe tener al menos 6 caracteres');
+		}else{
+			
+			if($scope.password !== $scope.cpassword ){
+				alert('debes confirmar tu password');
+			}else{
+				
+				
+				var myobject = {'nombre':$scope.nombre, 'email':$scope.email, 'telefono':$scope.telefono, 'empresa':$scope.empresa, 'cargo':$scope.cargo, 'password':$scope.password};
+
+				Object.toparams = function ObjecttoParams(obj) {
+					var p = [];
+					for (var key in obj) {
+						p.push(key + '=' + encodeURIComponent(obj[key]));
+					}
+					return p.join('&');
+				};
+
+				$http({
+					method: 'POST',
+					url: 'http://localhost/appesco_api/index.php?api=registro',
+					data: Object.toparams(myobject),
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).then(function (response){
+					console.log(response.data);
+					if(response.data.id>0){
+						localStorage.id_user = response.data.id;
+						localStorage.nombre = response.data.nombre;
+						alert('Te haz registrado con éxito, ahora puedes ingresar');
+						$location.path('/');
+					}
+					
+					if(response.data.error){
+						alert(response.data.error);	
+					}
+				 },function (error){
+					console.log('tapao en errores zii');
+					//console.log(response.data);
+					alert(response.data.error);
+				 });
+						
+				
+			}
+			
+		}
+		
+		
+    }
 });
 
 animateApp.controller('contactController', function($scope) {
