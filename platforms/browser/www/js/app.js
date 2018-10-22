@@ -21,8 +21,50 @@ animateApp.config(function($routeProvider) {
 
 });
 
-animateApp.controller('mainController', function($scope) {
+animateApp.controller('mainController', function($scope,$location,$http) {
     $scope.pageClass = 'page-home';
+	
+	if(localStorage.id_user>0){
+		$location.path('/sucursales');
+	}
+
+	$scope.login = function(){
+		
+		var myobject = {'email':$scope.email, 'password':$scope.password};
+
+				Object.toparams = function ObjecttoParams(obj) {
+					var p = [];
+					for (var key in obj) {
+						p.push(key + '=' + encodeURIComponent(obj[key]));
+					}
+					return p.join('&');
+				};
+
+				$http({
+					method: 'POST',
+					url: 'http://localhost/appesco_api/index.php?api=login',
+					data: Object.toparams(myobject),
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).then(function (response){
+					console.log(response.data);
+					
+					if(response.data.id>0){
+						localStorage.id_user = response.data.id;
+						localStorage.nombre = response.data.nombre;
+						$location.path('/sucursales');
+					}
+					
+					if(response.data.error){
+						alert(response.data.error);	
+					}
+				 },function (error){
+					console.log('tapao en errores zii');
+					//console.log(response.data);
+					alert(response.data.error);
+				 });
+		
+	}
+	
 });
 
 animateApp.controller('aboutController', function($scope) {
@@ -60,8 +102,10 @@ animateApp.controller('registroController', function($scope, $http, $location) {
 				}).then(function (response){
 					console.log(response.data);
 					if(response.data.id>0){
+						/*
 						localStorage.id_user = response.data.id;
 						localStorage.nombre = response.data.nombre;
+						*/
 						alert('Te haz registrado con éxito, ahora puedes ingresar');
 						$location.path('/');
 					}
