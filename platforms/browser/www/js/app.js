@@ -1,5 +1,7 @@
 var animateApp = angular.module('animateApp', ['ngRoute', 'ngAnimate']);
 
+var server = "http://192.168.0.210/appesco_api/";
+
 animateApp.config(function($routeProvider) {
     $routeProvider
     	.when('/', {
@@ -12,7 +14,7 @@ animateApp.config(function($routeProvider) {
     	})
       .when('/sucursales', {
     		templateUrl: 'page-sucursales.html',
-            controller: 'aboutController'
+            controller: 'sucursalesController'
     	})
     	.when('/contact', {
     		templateUrl: 'page-contact.html',
@@ -42,7 +44,7 @@ animateApp.controller('mainController', function($scope,$location,$http) {
 
 				$http({
 					method: 'POST',
-					url: 'http://localhost/appesco_api/index.php?api=login',
+					url: server + 'index.php?api=login',
 					data: Object.toparams(myobject),
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).then(function (response){
@@ -68,7 +70,16 @@ animateApp.controller('mainController', function($scope,$location,$http) {
 });
 
 animateApp.controller('aboutController', function($scope) {
+    $scope.pageClass = 'page-about';	
+});
+
+
+animateApp.controller('sucursalesController', function($scope) {
     $scope.pageClass = 'page-about';
+	$scope.open = function(url){
+		//window.open(url);
+		alert(url);
+	}
 });
 
 animateApp.controller('registroController', function($scope, $http, $location) {
@@ -96,7 +107,7 @@ animateApp.controller('registroController', function($scope, $http, $location) {
 
 				$http({
 					method: 'POST',
-					url: 'http://localhost/appesco_api/index.php?api=registro',
+					url: server + 'index.php?api=registro',
 					data: Object.toparams(myobject),
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).then(function (response){

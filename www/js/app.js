@@ -1,24 +1,32 @@
 var animateApp = angular.module('animateApp', ['ngRoute', 'ngAnimate']);
 
+var server = "http://192.168.0.210/appesco_api/";
+
 animateApp.config(function($routeProvider) {
     $routeProvider
-    	.when('/', {
+      .when('/', {
     		templateUrl: 'page-home.html',
             controller: 'mainController'
-    	})
+       })
       .when('/registro', {
     		templateUrl: 'page-registro.html',
             controller: 'registroController'
-    	})
+       })
       .when('/sucursales', {
     		templateUrl: 'page-sucursales.html',
             controller: 'aboutController'
-    	})
-    	.when('/contact', {
+       })
+      .when('/contact', {
+            controller: 'sucursalesController'
+       })
+	  .when('/home', {
+    		templateUrl: 'page-home.html',
+            controller: 'homeController'
+       })
+      .when('/contact', {
     		templateUrl: 'page-contact.html',
             controller: 'contactController'
-    	});
-
+       });
 });
 
 animateApp.controller('mainController', function($scope,$location,$http) {
@@ -42,7 +50,7 @@ animateApp.controller('mainController', function($scope,$location,$http) {
 
 				$http({
 					method: 'POST',
-					url: 'http://localhost/appesco_api/index.php?api=login',
+					url: server + 'index.php?api=login',
 					data: Object.toparams(myobject),
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).then(function (response){
@@ -68,7 +76,19 @@ animateApp.controller('mainController', function($scope,$location,$http) {
 });
 
 animateApp.controller('aboutController', function($scope) {
+    $scope.pageClass = 'page-about';	
+});
+
+animateApp.controller('homeController', function($scope) {
+    $scope.pageClass = 'page-about';	
+});
+
+
+animateApp.controller('sucursalesController', function($scope) {
     $scope.pageClass = 'page-about';
+	$scope.open = function(url){
+		window.open(url);		
+	}
 });
 
 animateApp.controller('registroController', function($scope, $http, $location) {
@@ -96,7 +116,7 @@ animateApp.controller('registroController', function($scope, $http, $location) {
 
 				$http({
 					method: 'POST',
-					url: 'http://localhost/appesco_api/index.php?api=registro',
+					url: server + 'index.php?api=registro',
 					data: Object.toparams(myobject),
 					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 				}).then(function (response){

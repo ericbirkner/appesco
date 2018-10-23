@@ -25,6 +25,9 @@ a, .celeste {
 	height: 40px;
 	background-color: #40a8e4;
 	text-align: left;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
 
 .input-field input[type=date]:focus + label, .input-field input[type=text]:focus + label, .input-field input[type=email]:focus + label, .input-field input[type=password]:focus + label {
@@ -56,13 +59,35 @@ a.back{
 #about {
 	
 }
+
+
+.direccion{
+	text-align: left;
+	font-size: 0.8em;
+}
+
+.direccion h4{
+	margin: 0 0 10px 0;
+	font-size: 1.4em;
+	color: #40a8e4;
+}
+
+.direccion strong{
+	font-weight: 700;
+	color: #222222;
+}
+
+.direccion a.nolink{
+	color: #666;
+}
+
 /* PAGES
 ============================================================================= */
 .page-home {
 	padding-top: 20px;
 }
 .page-about {
-	padding-top: 0px;	
+	padding-top: 25px;	
 }
 .page-contact {
 }
