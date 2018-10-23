@@ -64,7 +64,7 @@ animateApp.controller('mainController', function($scope,$location,$http) {
 					if(response.data.id>0){
 						localStorage.id_user = response.data.id;
 						localStorage.nombre = response.data.nombre;
-						$location.path('/sucursales');
+						$location.path('/home');
 					}
 					
 					if(response.data.error){
