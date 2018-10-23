@@ -81,6 +81,16 @@ a.back{
 	color: #666;
 }
 
+.menu_app{
+	margin-top: 30px;
+}
+
+.menu_app .col{
+	animation-duration: 2s;
+}
+
+
+
 /* PAGES
 ============================================================================= */
 .page-home {

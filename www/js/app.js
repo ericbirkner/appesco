@@ -1,11 +1,12 @@
 var animateApp = angular.module('animateApp', ['ngRoute', 'ngAnimate']);
 
-var server = "http://192.168.0.210/appesco_api/";
+//var server = "http://192.168.0.210/appesco_api/";
+var server = "http://pesco.cl/appesco_api/";
 
 animateApp.config(function($routeProvider) {
     $routeProvider
       .when('/', {
-    		templateUrl: 'page-home.html',
+    		templateUrl: 'page-login.html',
             controller: 'mainController'
        })
       .when('/registro', {
@@ -32,8 +33,12 @@ animateApp.config(function($routeProvider) {
 animateApp.controller('mainController', function($scope,$location,$http) {
     $scope.pageClass = 'page-home';
 	
+	console.log(localStorage.id_user);
+	
 	if(localStorage.id_user>0){
-		$location.path('/sucursales');
+		
+		$location.path('/home');
+		
 	}
 
 	$scope.login = function(){
