@@ -89,7 +89,9 @@ a.back{
 	animation-duration: 2s;
 }
 
-
+textarea#problema{
+	height: 8rem;
+}
 
 /* PAGES
 ============================================================================= */
