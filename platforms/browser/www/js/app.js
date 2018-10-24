@@ -24,9 +24,9 @@ animateApp.config(function($routeProvider) {
     		templateUrl: 'page-home.html',
             controller: 'homeController'
        })
-      .when('/contact', {
-    		templateUrl: 'page-contact.html',
-            controller: 'contactController'
+      .when('/sos', {
+    		templateUrl: 'page-sos.html',
+            controller: 'sosController'
        });
 });
 
@@ -90,12 +90,9 @@ animateApp.controller('homeController', function($scope) {
 
 
 animateApp.controller('sucursalesController', function($scope) {
-	console.log('sucu');
     $scope.pageClass = 'page-about';
 	$scope.open = function(url){
-		console.log(url)
-		//alert(url);	
-		//window.open(url);		
+		window.open(url);		
 	}
 });
 
@@ -156,6 +153,44 @@ animateApp.controller('registroController', function($scope, $http, $location) {
     }
 });
 
-animateApp.controller('contactController', function($scope) {
+animateApp.controller('sosController', function($scope, $http, $location) {
     $scope.pageClass = 'page-contact';
+	$scope.enviar = function(){
+		
+		var myobject = {'problema':$scope.problema, 'telefono':$scope.telefono, 'id_user':localStorage.id_user};
+
+				Object.toparams = function ObjecttoParams(obj) {
+					var p = [];
+					for (var key in obj) {
+						p.push(key + '=' + encodeURIComponent(obj[key]));
+					}
+					return p.join('&');
+				};
+
+				$http({
+					method: 'POST',
+					url: server + 'index.php?api=sos',
+					data: Object.toparams(myobject),
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).then(function (response){
+					console.log(response.data);
+										
+					if(response.data.ok){
+						alert(response.data.ok);
+						$scope.problema= ""; 
+						$scope.telefono= "";
+					}
+					
+					if(response.data.error){
+						alert(response.data.error);	
+					}
+					
+				 },function (error){
+					console.log('tapao en errores zii');
+					//console.log(response.data);
+					alert(response.data.error);
+				 });
+		
+	}
+	
 });
