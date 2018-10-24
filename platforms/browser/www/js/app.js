@@ -16,8 +16,13 @@ animateApp.config(function($routeProvider) {
       .when('/sucursales', {
     		templateUrl: 'page-sucursales.html',
             controller: 'sucursalesController'
+<<<<<<< HEAD
        })
       .when('/home', {
+=======
+       })      
+	  .when('/home', {
+>>>>>>> 52641d3eb30f3bba8b71d6dde63cb835a05e00a1
     		templateUrl: 'page-home.html',
             controller: 'homeController'
        })
@@ -30,7 +35,11 @@ animateApp.config(function($routeProvider) {
 animateApp.controller('mainController', function($scope,$location,$http) {
     $scope.pageClass = 'page-home';
 	
+<<<<<<< HEAD
 	console.log(localStorage.id_user);
+=======
+	
+>>>>>>> 52641d3eb30f3bba8b71d6dde63cb835a05e00a1
 	
 	if(localStorage.id_user>0){
 		
@@ -87,11 +96,18 @@ animateApp.controller('homeController', function($scope) {
 
 
 animateApp.controller('sucursalesController', function($scope) {
+	console.log('sucu');
     $scope.pageClass = 'page-about';
 	$scope.open = function(url){
+<<<<<<< HEAD
 		window.open(url);
 		//alert(url);
 	}
+=======
+		console.log(url);
+		window.open(url);	
+	};
+>>>>>>> 52641d3eb30f3bba8b71d6dde63cb835a05e00a1
 });
 
 animateApp.controller('registroController', function($scope, $http, $location) {
@@ -152,7 +168,11 @@ animateApp.controller('registroController', function($scope, $http, $location) {
 });
 
 animateApp.controller('sosController', function($scope, $http, $location) {
+<<<<<<< HEAD
     $scope.pageClass = 'page-about';
+=======
+    $scope.pageClass = 'page-contact';
+>>>>>>> 52641d3eb30f3bba8b71d6dde63cb835a05e00a1
 	$scope.enviar = function(){
 		
 		var myobject = {'problema':$scope.problema, 'telefono':$scope.telefono, 'id_user':localStorage.id_user};
