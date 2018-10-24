@@ -15,11 +15,8 @@ animateApp.config(function($routeProvider) {
        })
       .when('/sucursales', {
     		templateUrl: 'page-sucursales.html',
-            controller: 'aboutController'
-       })
-      .when('/contact', {
             controller: 'sucursalesController'
-       })
+       })      
 	  .when('/home', {
     		templateUrl: 'page-home.html',
             controller: 'homeController'
@@ -33,7 +30,7 @@ animateApp.config(function($routeProvider) {
 animateApp.controller('mainController', function($scope,$location,$http) {
     $scope.pageClass = 'page-home';
 	
-	console.log(localStorage.id_user);
+	
 	
 	if(localStorage.id_user>0){
 		
@@ -90,10 +87,12 @@ animateApp.controller('homeController', function($scope) {
 
 
 animateApp.controller('sucursalesController', function($scope) {
+	console.log('sucu');
     $scope.pageClass = 'page-about';
 	$scope.open = function(url){
-		window.open(url);		
-	}
+		console.log(url);
+		window.open(url);	
+	};
 });
 
 animateApp.controller('registroController', function($scope, $http, $location) {
