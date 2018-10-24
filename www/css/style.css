@@ -141,12 +141,17 @@ textarea#problema, textarea#comentarios{
 }
 /* contact ---------------------- */
 .page-contact.ng-leave {
+	-webkit-animation: slideOutLeft 0.5s both ease-in;
+	-moz-animation: slideOutLeft 0.5s both ease-in;
+	animation: slideOutLeft 0.5s both ease-in;
+	/*
 	-webkit-transform-origin: 50% 50%;
 	-webkit-animation: rotateOutNewspaper .5s both ease-in;
 	-moz-transform-origin: 50% 50%;
 	-moz-animation: rotateOutNewspaper .5s both ease-in;
 	transform-origin: 50% 50%;
 	animation: rotateOutNewspaper .5s both ease-in;
+	*/
 }
 .page-contact.ng-enter {
 	-webkit-animation: slideInUp 0.5s both ease-in;

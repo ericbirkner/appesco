@@ -21,6 +21,10 @@ animateApp.config(function($routeProvider) {
     		templateUrl: 'page-home.html',
             controller: 'homeController'
        })
+	  .when('/ventas', {
+    		templateUrl: 'page-ventas.html',
+            controller: 'ventasController'
+       })		
 	  .when('/postventa', {
     		templateUrl: 'page-postventa.html',
             controller: 'postventaController'
@@ -72,21 +76,61 @@ animateApp.controller('mainController', function($scope,$location,$http) {
 						showAlert(response.data.error);	
 					}
 				 },function (error){
-					console.log('tapao en errores zii');
+					console.log('Errores');
 					//console.log(response.data);
 					showAlert(response.data.error);
 				 });
 		
-	}
+	};
 	
 });
 
-animateApp.controller('aboutController', function($scope) {
-    $scope.pageClass = 'page-about';	
+animateApp.controller('ventasController', function($scope,$location,$http) {
+    $scope.pageClass = 'page-about';
+	$scope.enviar = function(){
+		
+		var myobject = {'equipo':$scope.equipo, 'telefono':$scope.telefono, 'email':$scope.email, 'id_user':localStorage.id_user};
+
+			Object.toparams = function ObjecttoParams(obj) {
+				var p = [];
+				for (var key in obj) {
+					p.push(key + '=' + encodeURIComponent(obj[key]));
+				}
+				return p.join('&');
+			};
+
+			$http({
+				method: 'POST',
+				url: server + 'index.php?api=ventas',
+				data: Object.toparams(myobject),
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}).then(function (response){
+				console.log(response.data);
+
+				if(response.data.ok){
+
+					$scope.equipo= ""; 
+					$scope.telefono= "";
+					$scope.email= "";
+					
+					showAlert(response.data.ok);
+				}
+
+				if(response.data.error){
+					showAlert(response.data.error);	
+				}
+
+			 },function (error){
+				console.log('Errores');
+				//console.log(response.data);
+				showAlert(response.data.error);
+			 });
+	};
 });
 
+
 animateApp.controller('homeController', function($scope) {
-    $scope.pageClass = 'page-about';	
+    $scope.pageClass = 'page-contact';	
 });
 
 animateApp.controller('postventaController', function($scope, $http, $location) {
@@ -146,7 +190,7 @@ animateApp.controller('postventaController', function($scope, $http, $location) 
 					}
 					
 				 },function (error){
-					console.log('tapao en errores zii');
+					console.log('Errores');
 					//console.log(response.data);
 					showAlert(response.data.error);
 				 });
@@ -206,7 +250,7 @@ animateApp.controller('registroController', function($scope, $http, $location) {
 						showAlert(response.data.error);	
 					}
 				 },function (error){
-					console.log('tapao en errores zii');
+					console.log('Errores');
 					//console.log(response.data);
 					showAlert(response.data.error);
 				 });
@@ -253,11 +297,11 @@ animateApp.controller('sosController', function($scope, $http, $location) {
 					}
 					
 				 },function (error){
-					console.log('tapao en errores zii');
+					console.log('Errores');
 					//console.log(response.data);
 					showAlert(response.data.error);
 				 });
 		
-	}
+	};
 	
 });
