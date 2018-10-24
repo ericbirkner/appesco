@@ -90,9 +90,12 @@ animateApp.controller('homeController', function($scope) {
 
 
 animateApp.controller('sucursalesController', function($scope) {
+	console.log('sucu');
     $scope.pageClass = 'page-about';
 	$scope.open = function(url){
-		window.open(url);		
+		console.log(url)
+		//alert(url);	
+		//window.open(url);		
 	}
 });
 
