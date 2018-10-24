@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="app pesco" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>app pesco</name>
+<widget id="appesco" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>appesco</name>
     <description>
-        app pesco
+        Pesco App
     </description>
-    <author email="eric.birkner@simplechile.com" href="http://simplechile.com">
-        Simple Chile
+    <author email="support@phonegap.com" href="http://phonegap.com">
+        Simple Chile Spa
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
@@ -108,12 +108,6 @@
     <allow-intent href="geo:*" launch-external="true" />
     <allow-intent href="geo:*" launch-external="true" />
 	<access origin="tel:*" launch-external="true" />
-    <allow-intent href="http://*/*" launch-external="true"/>
-    <allow-intent href="https://*/*" launch-external="true"/>
-    <allow-intent href="tel:*" launch-external="true" />
-    <allow-intent href="sms:*" launch-external="true"/>
-    <allow-intent href="mailto:*" launch-external="true"/>
-    <allow-intent href="geo:*" launch-external="true"/>
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
