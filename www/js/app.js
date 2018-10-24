@@ -21,6 +21,10 @@ animateApp.config(function($routeProvider) {
     		templateUrl: 'page-home.html',
             controller: 'homeController'
        })
+	  .when('/postventa', {
+    		templateUrl: 'page-postventa.html',
+            controller: 'postventaController'
+       })	
       .when('/sos', {
     		templateUrl: 'page-sos.html',
             controller: 'sosController'
@@ -65,12 +69,12 @@ animateApp.controller('mainController', function($scope,$location,$http) {
 					}
 					
 					if(response.data.error){
-						alert(response.data.error);	
+						showAlert(response.data.error);	
 					}
 				 },function (error){
 					console.log('tapao en errores zii');
 					//console.log(response.data);
-					alert(response.data.error);
+					showAlert(response.data.error);
 				 });
 		
 	}
@@ -85,12 +89,77 @@ animateApp.controller('homeController', function($scope) {
     $scope.pageClass = 'page-about';	
 });
 
+animateApp.controller('postventaController', function($scope, $http, $location) {
+    $scope.pageClass = 'page-about';
+	$scope.ocultar = function(val){
+		
+		if(val == 1){
+			if($scope.fecha_desde!=""){
+				$scope.fecha_desde_label = {
+					"opacity" : "0"
+				}
+			}
+		}	
+		
+		if(val == 2){
+			if($scope.fecha_hasta!=""){
+				$scope.fecha_hasta_label = {
+					"opacity" : "0"
+				}
+			}
+		}
+	};
+	
+	$scope.enviar = function(){
+		
+		var myobject = {'equipo':$scope.equipo, 'modelo':$scope.modelo, 'fecha_desde':$scope.fecha_desde, 'fecha_hasta':$scope.fecha_hasta, 'comentarios':$scope.comentarios, 'id_user':localStorage.id_user};
+
+				Object.toparams = function ObjecttoParams(obj) {
+					var p = [];
+					for (var key in obj) {
+						p.push(key + '=' + encodeURIComponent(obj[key]));
+					}
+					return p.join('&');
+				};
+
+				$http({
+					method: 'POST',
+					url: server + 'index.php?api=postventa',
+					data: Object.toparams(myobject),
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).then(function (response){
+					console.log(response.data);
+										
+					if(response.data.ok){
+						
+						$scope.equipo= ""; 
+						$scope.modelo= "";
+						$scope.fecha_desde= "";
+						$scope.fecha_hasta= "";
+						$scope.comentarios= "";
+						
+						showAlert(response.data.ok);
+					}
+					
+					if(response.data.error){
+						showAlert(response.data.error);	
+					}
+					
+				 },function (error){
+					console.log('tapao en errores zii');
+					//console.log(response.data);
+					showAlert(response.data.error);
+				 });
+		
+	};
+});
+
 
 animateApp.controller('sucursalesController', function($scope) {
     $scope.pageClass = 'page-about';
 	$scope.open = function(url){
 		window.open(url);
-		//alert(url);
+		//showAlert(url);
 	}
 });
 
@@ -99,11 +168,11 @@ animateApp.controller('registroController', function($scope, $http, $location) {
 	$scope.registro = function() {
 		
         if($scope.password.length<6){
-			alert('la password debe tener al menos 6 caracteres');
+			showAlert('la password debe tener al menos 6 caracteres');
 		}else{
 			
 			if($scope.password !== $scope.cpassword ){
-				alert('debes confirmar tu password');
+				showAlert('debes confirmar tu password');
 			}else{
 				
 				
@@ -129,17 +198,17 @@ animateApp.controller('registroController', function($scope, $http, $location) {
 						localStorage.id_user = response.data.id;
 						localStorage.nombre = response.data.nombre;
 						*/
-						alert('Te haz registrado con éxito, ahora puedes ingresar');
+						showAlert('Te haz registrado con éxito, ahora puedes ingresar');
 						$location.path('/');
 					}
 					
 					if(response.data.error){
-						alert(response.data.error);	
+						showAlert(response.data.error);	
 					}
 				 },function (error){
 					console.log('tapao en errores zii');
 					//console.log(response.data);
-					alert(response.data.error);
+					showAlert(response.data.error);
 				 });
 						
 				
@@ -174,19 +243,19 @@ animateApp.controller('sosController', function($scope, $http, $location) {
 					console.log(response.data);
 										
 					if(response.data.ok){
-						alert(response.data.ok);
+						showAlert(response.data.ok);
 						$scope.problema= ""; 
 						$scope.telefono= "";
 					}
 					
 					if(response.data.error){
-						alert(response.data.error);	
+						showAlert(response.data.error);	
 					}
 					
 				 },function (error){
 					console.log('tapao en errores zii');
 					//console.log(response.data);
-					alert(response.data.error);
+					showAlert(response.data.error);
 				 });
 		
 	}
