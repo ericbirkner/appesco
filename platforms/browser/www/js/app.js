@@ -16,21 +16,29 @@ animateApp.config(function($routeProvider) {
       .when('/sucursales', {
     		templateUrl: 'page-sucursales.html',
             controller: 'sucursalesController'
-       })      
-	  .when('/home', {
+       })
+      .when('/home', {
     		templateUrl: 'page-home.html',
             controller: 'homeController'
        })
-      .when('/contact', {
-    		templateUrl: 'page-contact.html',
-            controller: 'contactController'
+	  .when('/ventas', {
+    		templateUrl: 'page-ventas.html',
+            controller: 'ventasController'
+       })		
+	  .when('/postventa', {
+    		templateUrl: 'page-postventa.html',
+            controller: 'postventaController'
+       })	
+      .when('/sos', {
+    		templateUrl: 'page-sos.html',
+            controller: 'sosController'
        });
 });
 
 animateApp.controller('mainController', function($scope,$location,$http) {
     $scope.pageClass = 'page-home';
 	
-	
+	console.log(localStorage.id_user);
 	
 	if(localStorage.id_user>0){
 		
@@ -65,34 +73,138 @@ animateApp.controller('mainController', function($scope,$location,$http) {
 					}
 					
 					if(response.data.error){
-						alert(response.data.error);	
+						showAlert(response.data.error);	
 					}
 				 },function (error){
-					console.log('tapao en errores zii');
+					console.log('Errores');
 					//console.log(response.data);
-					alert(response.data.error);
+					showAlert(response.data.error);
 				 });
 		
-	}
+	};
 	
 });
 
-animateApp.controller('aboutController', function($scope) {
-    $scope.pageClass = 'page-about';	
+animateApp.controller('ventasController', function($scope,$location,$http) {
+    $scope.pageClass = 'page-about';
+	$scope.enviar = function(){
+		
+		var myobject = {'equipo':$scope.equipo, 'telefono':$scope.telefono, 'email':$scope.email, 'id_user':localStorage.id_user};
+
+			Object.toparams = function ObjecttoParams(obj) {
+				var p = [];
+				for (var key in obj) {
+					p.push(key + '=' + encodeURIComponent(obj[key]));
+				}
+				return p.join('&');
+			};
+
+			$http({
+				method: 'POST',
+				url: server + 'index.php?api=ventas',
+				data: Object.toparams(myobject),
+				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+			}).then(function (response){
+				console.log(response.data);
+
+				if(response.data.ok){
+
+					$scope.equipo= ""; 
+					$scope.telefono= "";
+					$scope.email= "";
+					
+					showAlert(response.data.ok);
+				}
+
+				if(response.data.error){
+					showAlert(response.data.error);	
+				}
+
+			 },function (error){
+				console.log('Errores');
+				//console.log(response.data);
+				showAlert(response.data.error);
+			 });
+	};
 });
 
+
 animateApp.controller('homeController', function($scope) {
-    $scope.pageClass = 'page-about';	
+    $scope.pageClass = 'page-contact';	
+});
+
+animateApp.controller('postventaController', function($scope, $http, $location) {
+    $scope.pageClass = 'page-about';
+	$scope.ocultar = function(val){
+		
+		if(val == 1){
+			if($scope.fecha_desde!=""){
+				$scope.fecha_desde_label = {
+					"opacity" : "0"
+				}
+			}
+		}	
+		
+		if(val == 2){
+			if($scope.fecha_hasta!=""){
+				$scope.fecha_hasta_label = {
+					"opacity" : "0"
+				}
+			}
+		}
+	};
+	
+	$scope.enviar = function(){
+		
+		var myobject = {'equipo':$scope.equipo, 'modelo':$scope.modelo, 'fecha_desde':$scope.fecha_desde, 'fecha_hasta':$scope.fecha_hasta, 'comentarios':$scope.comentarios, 'id_user':localStorage.id_user};
+
+				Object.toparams = function ObjecttoParams(obj) {
+					var p = [];
+					for (var key in obj) {
+						p.push(key + '=' + encodeURIComponent(obj[key]));
+					}
+					return p.join('&');
+				};
+
+				$http({
+					method: 'POST',
+					url: server + 'index.php?api=postventa',
+					data: Object.toparams(myobject),
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).then(function (response){
+					console.log(response.data);
+										
+					if(response.data.ok){
+						
+						$scope.equipo= ""; 
+						$scope.modelo= "";
+						$scope.fecha_desde= "";
+						$scope.fecha_hasta= "";
+						$scope.comentarios= "";
+						
+						showAlert(response.data.ok);
+					}
+					
+					if(response.data.error){
+						showAlert(response.data.error);	
+					}
+					
+				 },function (error){
+					console.log('Errores');
+					//console.log(response.data);
+					showAlert(response.data.error);
+				 });
+		
+	};
 });
 
 
 animateApp.controller('sucursalesController', function($scope) {
-	console.log('sucu');
     $scope.pageClass = 'page-about';
 	$scope.open = function(url){
-		console.log(url);
-		window.open(url);	
-	};
+		window.open(url);
+		//showAlert(url);
+	}
 });
 
 animateApp.controller('registroController', function($scope, $http, $location) {
@@ -100,11 +212,11 @@ animateApp.controller('registroController', function($scope, $http, $location) {
 	$scope.registro = function() {
 		
         if($scope.password.length<6){
-			alert('la password debe tener al menos 6 caracteres');
+			showAlert('la password debe tener al menos 6 caracteres');
 		}else{
 			
 			if($scope.password !== $scope.cpassword ){
-				alert('debes confirmar tu password');
+				showAlert('debes confirmar tu password');
 			}else{
 				
 				
@@ -130,17 +242,17 @@ animateApp.controller('registroController', function($scope, $http, $location) {
 						localStorage.id_user = response.data.id;
 						localStorage.nombre = response.data.nombre;
 						*/
-						alert('Te haz registrado con éxito, ahora puedes ingresar');
+						showAlert('Te haz registrado con éxito, ahora puedes ingresar');
 						$location.path('/');
 					}
 					
 					if(response.data.error){
-						alert(response.data.error);	
+						showAlert(response.data.error);	
 					}
 				 },function (error){
-					console.log('tapao en errores zii');
+					console.log('Errores');
 					//console.log(response.data);
-					alert(response.data.error);
+					showAlert(response.data.error);
 				 });
 						
 				
@@ -152,6 +264,44 @@ animateApp.controller('registroController', function($scope, $http, $location) {
     }
 });
 
-animateApp.controller('contactController', function($scope) {
-    $scope.pageClass = 'page-contact';
+animateApp.controller('sosController', function($scope, $http, $location) {
+    $scope.pageClass = 'page-about';
+	$scope.enviar = function(){
+		
+		var myobject = {'problema':$scope.problema, 'telefono':$scope.telefono, 'id_user':localStorage.id_user};
+
+				Object.toparams = function ObjecttoParams(obj) {
+					var p = [];
+					for (var key in obj) {
+						p.push(key + '=' + encodeURIComponent(obj[key]));
+					}
+					return p.join('&');
+				};
+
+				$http({
+					method: 'POST',
+					url: server + 'index.php?api=sos',
+					data: Object.toparams(myobject),
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).then(function (response){
+					console.log(response.data);
+										
+					if(response.data.ok){
+						showAlert(response.data.ok);
+						$scope.problema= ""; 
+						$scope.telefono= "";
+					}
+					
+					if(response.data.error){
+						showAlert(response.data.error);	
+					}
+					
+				 },function (error){
+					console.log('Errores');
+					//console.log(response.data);
+					showAlert(response.data.error);
+				 });
+		
+	};
+	
 });
