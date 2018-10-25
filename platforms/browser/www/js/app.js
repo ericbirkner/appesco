@@ -13,6 +13,10 @@ animateApp.config(function($routeProvider) {
     		templateUrl: 'page-registro.html',
             controller: 'registroController'
        })
+	  .when('/editar-datos', {
+    		templateUrl: 'page-user_info.html',
+            controller: 'editar-datosController'
+       })	
       .when('/sucursales', {
     		templateUrl: 'page-sucursales.html',
             controller: 'sucursalesController'
@@ -114,6 +118,7 @@ animateApp.controller('ventasController', function($scope,$location,$http) {
 					$scope.email= "";
 					
 					showAlert(response.data.ok);
+					$location.path('/home');
 				}
 
 				if(response.data.error){
@@ -183,6 +188,7 @@ animateApp.controller('postventaController', function($scope, $http, $location) 
 						$scope.comentarios= "";
 						
 						showAlert(response.data.ok);
+						$location.path('/home');
 					}
 					
 					if(response.data.error){
@@ -290,6 +296,7 @@ animateApp.controller('sosController', function($scope, $http, $location) {
 						showAlert(response.data.ok);
 						$scope.problema= ""; 
 						$scope.telefono= "";
+						$location.path('/home');
 					}
 					
 					if(response.data.error){
@@ -304,4 +311,61 @@ animateApp.controller('sosController', function($scope, $http, $location) {
 		
 	};
 	
+});
+
+animateApp.controller('editar-datosController', function($scope, $http, $location) {
+	
+	if(localStorage.id_user>0){
+		$http.get(server + 'index.php?api=get_user&id='+localStorage.id_user)
+		.then(function(response) {
+			console.log(response.data);
+			$scope.nombre = response.data.nombre; 
+			$scope.email = response.data.email; 
+			$scope.cargo = response.data.cargo;
+			$scope.telefono = response.data.telefono;
+			$scope.empresa = response.data.empresa;
+		});
+		
+	}else{
+		showAlert('El usuario no éxiste');
+		$location.path('/');
+	}	
+	
+    $scope.pageClass = 'page-about';
+	$scope.guardar_datos = function() {
+	 	
+		var myobject = {'nombre':$scope.nombre, 'email':$scope.email, 'telefono':$scope.telefono, 'empresa':$scope.empresa, 'cargo':$scope.cargo,'id':localStorage.id_user};
+
+				Object.toparams = function ObjecttoParams(obj) {
+					var p = [];
+					for (var key in obj) {
+						p.push(key + '=' + encodeURIComponent(obj[key]));
+					}
+					return p.join('&');
+				};
+
+				$http({
+					method: 'POST',
+					url: server + 'index.php?api=update_user',
+					data: Object.toparams(myobject),
+					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+				}).then(function (response){
+					console.log(response.data);
+					localStorage.nombre = $scope.nombre;
+					
+					if(response.data.ok){
+						showAlert(response.data.ok);
+						$location.path('/home');
+					}
+					
+					if(response.data.error){
+						showAlert(response.data.error);	
+					}
+				 },function (error){
+					console.log('Errores');
+					//console.log(response.data);
+					showAlert(response.data.error);
+				 });	
+		
+    }
 });
