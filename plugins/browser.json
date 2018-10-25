@@ -8,66 +8,66 @@
     },
     "installed_plugins": {
         "cordova-plugin-battery-status": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-camera": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-media-capture": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-contacts": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-device": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-device-motion": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-device-orientation": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-dialogs": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-file-transfer": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-geolocation": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-globalization": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-media": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-network-information": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-vibration": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         },
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-file": {
-            "PACKAGE_NAME": "pesco"
+            "PACKAGE_NAME": "appesco"
         }
     }
 }

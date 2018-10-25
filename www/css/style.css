@@ -13,9 +13,11 @@ body {
 main {
 	flex: 1 0 auto;
 }
+
 a, .celeste {
 	color: #40a8e4;
 }
+
 .btn:hover, .btn-large:hover {
 	background-color: #2388c2;
 }
@@ -28,6 +30,7 @@ a, .celeste {
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: 8;
 }
 
 .input-field input[type=date]:focus + label, .input-field input[type=text]:focus + label, .input-field input[type=email]:focus + label, .input-field input[type=password]:focus + label {
@@ -89,7 +92,9 @@ a.back{
 	animation-duration: 2s;
 }
 
-
+textarea#problema, textarea#comentarios{
+	height: 8rem;
+}
 
 /* PAGES
 ============================================================================= */
@@ -136,12 +141,17 @@ a.back{
 }
 /* contact ---------------------- */
 .page-contact.ng-leave {
+	-webkit-animation: slideOutLeft 0.5s both ease-in;
+	-moz-animation: slideOutLeft 0.5s both ease-in;
+	animation: slideOutLeft 0.5s both ease-in;
+	/*
 	-webkit-transform-origin: 50% 50%;
 	-webkit-animation: rotateOutNewspaper .5s both ease-in;
 	-moz-transform-origin: 50% 50%;
 	-moz-animation: rotateOutNewspaper .5s both ease-in;
 	transform-origin: 50% 50%;
 	animation: rotateOutNewspaper .5s both ease-in;
+	*/
 }
 .page-contact.ng-enter {
 	-webkit-animation: slideInUp 0.5s both ease-in;
