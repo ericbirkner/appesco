@@ -28,20 +28,45 @@
 			</ul>
 		</div>
 	</nav>
+
+  <div class="row">
+  	<div class="col s6 offset-s3">
+  		<center class="logo-pesco">
+  			<img class="responsive-img" src="img/logo_pesco.png" />
+  		</center>
+  	</div>
+
+  </div>
+
 </header>
 
-<div class="row">
-	<div class="col s6 offset-s3">
-		<center class="logo-pesco">
-			<img class="responsive-img" src="img/logo_pesco.png" />
-		</center>
-	</div>
 
-</div>
 
 <!-- inject our views using ng-view -->
 <!-- each angular controller applies a different class here -->
 <div class="page {{ pageClass }}" ng-view></div>
+
+
+<footer>
+  <div class="row">
+    <div class="col s3 m3">
+      <img src="img/ico-mantencion.png" class="icon">
+      <div class="desc">Mantención</div>
+    </div>
+    <div class="col s3 m3">
+      <img src="img/ico-sos.png" class="icon">
+      <div class="desc">sos</div>
+    </div>
+    <div class="col s3 m3">
+      <img src="img/ico-cotizaciones.png" class="icon">
+      <div class="desc">cotizaciones</div>
+    </div>
+    <div class="col s3 m3">
+      <img src="img/ico-sucursales.png" class="icon">
+      <div class="desc">sucursales</div>
+    </div>
+  </div>
+</footer>
 
 <!-- JS -->
 <script src="js/jquery.min.js"></script>
