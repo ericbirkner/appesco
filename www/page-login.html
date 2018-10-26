@@ -1,6 +1,5 @@
 <main>
     <center>
-      <img class="responsive-img" src="img/pescologo.png" />
       <div class="container">
         <div class="row">
           <form class="col s12" method="post" ng-submit="login()">
@@ -10,14 +9,14 @@
             </div>
 
             <div class='row'>
-              <div class='input-field col s12'>
+              <div class='input-field col s10 offset-s1'>
                 <input class='validate' type='email' name='email' id='email' ng-model="email" required />
                 <label for='email'>Ingrese su email</label>
               </div>
             </div>
 
             <div class='row'>
-              <div class='input-field col s12'>
+              <div class='input-field col s10 offset-s1'>
                 <input class='validate' type='password' name='password' id='password' ng-model="password" required/>
                 <label for='password'>Ingrese su password</label>
               </div>
@@ -26,7 +25,7 @@
             <br />
             <center>
               <div class='row'>
-                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect' >Ingresar</button>
+                <button type='submit' name='btn_login' class='boton' >Ingresar</button>
               </div>
             </center>
           </form>
@@ -37,7 +36,4 @@
 
 
   </main>
-<!--
-<a href="#about" class="btn btn-success btn-lg">About</a>
-<a href="#contact" class="btn btn-danger btn-lg">Contact</a>
--->
+

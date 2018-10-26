@@ -8,14 +8,71 @@ body {
 	margin: 0;
 	font-family: 'Lato', sans-serif;
 	background: #fff;
-	color: #666;
+	color: #545255;
+	text-transform: uppercase;
 }
+
+.barra_top{
+	background: url(../img/filete.png) repeat-x;
+	height: 10px;
+	width: 100%;
+}
+
 main {
 	flex: 1 0 auto;
 }
 
 a, .celeste {
-	color: #40a8e4;
+	color: #03a1d7;
+}
+
+header nav{
+	color: #03a1d7;
+	background: none;
+	box-shadow: none;
+	visibility: hidden;
+}
+
+h2.seccion{
+	color: #03a1d7;
+	font-size: 1.5em;
+}
+
+nav a{
+	color: #03a1d7;
+}
+
+nav a#volver{
+	display: none;
+	background: url(../img/ico-volver.png) no-repeat;
+	background-size: 30px auto;
+	background-position: left center;
+	padding-left: 35px;
+}
+
+.logo-pesco{
+	padding: 15px 0 0 0;
+}
+
+.side-nav{
+	background: url('../img/Logo_Pesco_Blanco.png'), url('../img/fondo_cyan.png');
+	background-size: 65px auto, auto 100%;
+	background-repeat: no-repeat, repeat-x;
+	background-position: center 85%, top left;
+	color: #ffffff;
+}
+
+.side-nav a{
+	color: #ffffff;
+}
+
+.side-nav li:hover, .side-nav li.active{
+	background: none;
+	background-color: rgba(0,0,0,0.1);
+}
+
+nav ul a:hover{
+	background: initial;
 }
 
 .btn:hover, .btn-large:hover {
@@ -35,6 +92,7 @@ a, .celeste {
 
 .input-field input[type=date]:focus + label, .input-field input[type=text]:focus + label, .input-field input[type=email]:focus + label, .input-field input[type=password]:focus + label {
 	color: #e91e63;
+	text-transform: uppercase;
 }
 .input-field input[type=date]:focus, .input-field input[type=text]:focus, .input-field input[type=email]:focus, .input-field input[type=password]:focus {
 	border-bottom: 2px solid #e91e63;
@@ -49,12 +107,20 @@ input:not([type]), input[type=text], input[type=password], input[type=email], in
 	margin-bottom: 0;
 }
 
+button.boton{
+	width: 180px;
+	height: 48px;
+	background: url(../img/bkg-botones.png) no-repeat;
+	background-size: 100% auto;
+	border: none;
+	text-transform: uppercase;
+}
+
 .page {
 	bottom: 0;
-	padding-top: 50px;
 	position: absolute;
 	text-align: center;
-	top: 0;
+	top: 130px;
 	width: 100%;
 }
 
@@ -65,7 +131,7 @@ a.back{
 }
 
 #about {
-	
+
 }
 
 
@@ -97,6 +163,19 @@ a.back{
 	animation-duration: 2s;
 }
 
+.menu_app img.img-servicio{
+	width: 55%;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+}
+
+.menu_app .desc{
+	font-size: 0.7em;
+	line-height: 1.3em !important;
+	margin-top: 5px;
+}
+
 textarea#problema, textarea#comentarios{
 	height: 8rem;
 }
@@ -107,7 +186,7 @@ textarea#problema, textarea#comentarios{
 	padding-top: 20px;
 }
 .page-about {
-	padding-top: 25px;	
+	padding-top: 25px;
 }
 .page-contact {
 }
