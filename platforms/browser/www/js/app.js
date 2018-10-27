@@ -33,6 +33,10 @@ animateApp.config(function ($routeProvider) {
 			templateUrl: 'page-ventas.html',
 			controller: 'ventasController'
 		})
+		.when('/form-ventas/:tipo', {
+			templateUrl: 'page-form-ventas.html',
+			controller: 'form-ventasController'
+		})
 		.when('/postventa', {
 			templateUrl: 'page-postventa.html',
 			controller: 'postventaController'
@@ -102,10 +106,19 @@ animateApp.controller('mainController', function ($scope, $location, $http) {
 
 });
 
-animateApp.controller('ventasController', function ($scope, $location, $http) {
+animateApp.controller('ventasController', function ($scope) {
+	angular.element('header nav').css('visibility', 'visible');
+	angular.element('#volver').css('display', 'block');
+	$scope.pageClass = 'page-about';	
+	
+});
+
+
+animateApp.controller('form-ventasController', function ($scope, $location, $http,$routeParams) {
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
 	$scope.pageClass = 'page-about';
+	$scope.tipo= $routeParams.tipo;
 	$scope.enviar = function () {
 
 		var myobject = {
