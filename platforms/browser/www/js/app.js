@@ -3,275 +3,310 @@ var animateApp = angular.module('animateApp', ['ngRoute', 'ngAnimate']);
 //var server = "http://192.168.0.210/appesco_api/";
 var server = "http://pesco.cl/appesco_api/";
 
-animateApp.config(function($routeProvider) {
-    $routeProvider
-        .when('/', {
-        		templateUrl: 'page-login.html',
-                controller: 'mainController'
-           })
-        .when('/registro', {
-        		templateUrl: 'page-registro.html',
-                controller: 'registroController'
-           })
-    	  .when('/editar-datos', {
-        		templateUrl: 'page-user_info.html',
-                controller: 'editar-datosController'
-           })
-        .when('/sucursales', {
-        		templateUrl: 'page-sucursales.html',
-                controller: 'sucursalesController'
-           })
-        .when('/home', {
-        		templateUrl: 'page-home.html',
-                controller: 'homeController'
-           })
-    	  .when('/ventas', {
-        		templateUrl: 'page-ventas.html',
-                controller: 'ventasController'
-           })
-    	  .when('/postventa', {
-        		templateUrl: 'page-postventa.html',
-                controller: 'postventaController'
-           })
-        .when('/salir', {
-            templateUrl: 'page-login.html',
-        		controller: 'salirController'
-           })
-        .when('/sos', {
-         		templateUrl: 'page-sos.html',
-                 controller: 'sosController'
-        });
+animateApp.config(function ($routeProvider) {
+	$routeProvider
+		.when('/', {
+			templateUrl: 'page-login.html',
+			controller: 'mainController'
+		})
+		.when('/login', {
+			templateUrl: 'page-login.html',
+			controller: 'mainController'
+		})
+		.when('/registro', {
+			templateUrl: 'page-registro.html',
+			controller: 'registroController'
+		})
+		.when('/editar-datos', {
+			templateUrl: 'page-user_info.html',
+			controller: 'editar-datosController'
+		})
+		.when('/sucursales', {
+			templateUrl: 'page-sucursales.html',
+			controller: 'sucursalesController'
+		})
+		.when('/home', {
+			templateUrl: 'page-home.html',
+			controller: 'homeController'
+		})
+		.when('/ventas', {
+			templateUrl: 'page-ventas.html',
+			controller: 'ventasController'
+		})
+		.when('/postventa', {
+			templateUrl: 'page-postventa.html',
+			controller: 'postventaController'
+		})
+		.when('/salir', {
+			templateUrl: 'page-login.html',
+			controller: 'salirController'
+		})
+		.when('/sos', {
+			templateUrl: 'page-sos.html',
+			controller: 'sosController'
+		});
 });
 
-animateApp.controller('mainController', function($scope,$location,$http) {
-  $scope.pageClass = 'page-about';
-
+animateApp.controller('mainController', function ($scope, $location, $http) {
+	$scope.pageClass = 'page-about';
+	angular.element('footer').removeClass('active');
 	console.log(localStorage.id_user);
 
-	if(localStorage.id_user>0){
+	if (localStorage.id_user > 0) {
 
 		$location.path('/home');
 
 	}
 
-	$scope.login = function(){
+	$scope.login = function () {
 
-		var myobject = {'email':$scope.email, 'password':$scope.password};
+		var myobject = {
+			'email': $scope.email,
+			'password': $scope.password
+		};
 
-				Object.toparams = function ObjecttoParams(obj) {
-					var p = [];
-					for (var key in obj) {
-						p.push(key + '=' + encodeURIComponent(obj[key]));
-					}
-					return p.join('&');
-				};
+		Object.toparams = function ObjecttoParams(obj) {
+			var p = [];
+			for (var key in obj) {
+				p.push(key + '=' + encodeURIComponent(obj[key]));
+			}
+			return p.join('&');
+		};
 
-				$http({
-					method: 'POST',
-					url: server + 'index.php?api=login',
-					data: Object.toparams(myobject),
-					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-				}).then(function (response){
-					console.log(response.data);
+		$http({
+			method: 'POST',
+			url: server + 'index.php?api=login',
+			data: Object.toparams(myobject),
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+		}).then(function (response) {
+			console.log(response.data);
 
-					if(response.data.id>0){
-						localStorage.id_user = response.data.id;
-						localStorage.nombre = response.data.nombre;
-						$location.path('/home');
-					}
+			if (response.data.id > 0) {
+				localStorage.id_user = response.data.id;
+				localStorage.nombre = response.data.nombre;
+				$location.path('/home');
+			}
 
-					if(response.data.error){
-						showAlert(response.data.error);
-					}
-				 },function (error){
-					console.log('Errores');
-					//console.log(response.data);
-					showAlert(response.data.error);
-				 });
-
-	};
-
-});
-
-animateApp.controller('ventasController', function($scope,$location,$http) {
-  angular.element('header nav').css('visibility','visible');
-  angular.element('#volver').css('display','block');
-    $scope.pageClass = 'page-about';
-	  $scope.enviar = function(){
-
-		var myobject = {'equipo':$scope.equipo, 'telefono':$scope.telefono, 'email':$scope.email, 'id_user':localStorage.id_user};
-
-			Object.toparams = function ObjecttoParams(obj) {
-				var p = [];
-				for (var key in obj) {
-					p.push(key + '=' + encodeURIComponent(obj[key]));
-				}
-				return p.join('&');
-			};
-
-			$http({
-				method: 'POST',
-				url: server + 'index.php?api=ventas',
-				data: Object.toparams(myobject),
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-			}).then(function (response){
-				console.log(response.data);
-
-				if(response.data.ok){
-
-					$scope.equipo= "";
-					$scope.telefono= "";
-					$scope.email= "";
-
-					showAlert(response.data.ok);
-					$location.path('/home');
-				}
-
-				if(response.data.error){
-					showAlert(response.data.error);
-				}
-
-			 },function (error){
-				console.log('Errores');
-				//console.log(response.data);
+			if (response.data.error) {
 				showAlert(response.data.error);
-			 });
+			}
+		}, function (error) {
+			console.log('Errores');
+			//console.log(response.data);
+			showAlert(response.data.error);
+		});
+
+	};
+
+});
+
+animateApp.controller('ventasController', function ($scope, $location, $http) {
+	angular.element('header nav').css('visibility', 'visible');
+	angular.element('#volver').css('display', 'block');
+	$scope.pageClass = 'page-about';
+	$scope.enviar = function () {
+
+		var myobject = {
+			'equipo': $scope.equipo,
+			'telefono': $scope.telefono,
+			'email': $scope.email,
+			'id_user': localStorage.id_user
+		};
+
+		Object.toparams = function ObjecttoParams(obj) {
+			var p = [];
+			for (var key in obj) {
+				p.push(key + '=' + encodeURIComponent(obj[key]));
+			}
+			return p.join('&');
+		};
+
+		$http({
+			method: 'POST',
+			url: server + 'index.php?api=ventas',
+			data: Object.toparams(myobject),
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+		}).then(function (response) {
+			console.log(response.data);
+
+			if (response.data.ok) {
+
+				$scope.equipo = "";
+				$scope.telefono = "";
+				$scope.email = "";
+
+				showAlert(response.data.ok);
+				$location.path('/home');
+			}
+
+			if (response.data.error) {
+				showAlert(response.data.error);
+			}
+
+		}, function (error) {
+			console.log('Errores');
+			//console.log(response.data);
+			showAlert(response.data.error);
+		});
 	};
 });
 
 
-animateApp.controller('homeController', function($scope) {
-    $scope.pageClass = 'page-about';
-    angular.element('header nav').css('visibility','visible');
-    angular.element('#volver').css('display','none');
+animateApp.controller('homeController', function ($scope) {
+	$scope.pageClass = 'page-about';
+	angular.element('header nav').css('visibility', 'visible');
+	angular.element('#volver').css('display', 'none');
+	angular.element('footer').addClass('active');
 });
 
-animateApp.controller('postventaController', function($scope, $http, $location) {
-   angular.element('header nav').css('visibility','visible');
-   angular.element('#volver').css('display','block');
-    $scope.pageClass = 'page-about';
-	  $scope.ocultar = function(val){
+animateApp.controller('postventaController', function ($scope, $http, $location) {
+	angular.element('header nav').css('visibility', 'visible');
+	angular.element('#volver').css('display', 'block');
+	$scope.pageClass = 'page-about';
+	$scope.ocultar = function (val) {
 
-		if(val == 1){
-			if($scope.fecha_desde!=""){
+		if (val == 1) {
+			if ($scope.fecha_desde != "") {
 				$scope.fecha_desde_label = {
-					"opacity" : "0"
+					"opacity": "0"
 				}
 			}
 		}
 
-		if(val == 2){
-			if($scope.fecha_hasta!=""){
+		if (val == 2) {
+			if ($scope.fecha_hasta != "") {
 				$scope.fecha_hasta_label = {
-					"opacity" : "0"
+					"opacity": "0"
 				}
 			}
 		}
 	};
 
-	$scope.enviar = function(){
+	$scope.enviar = function () {
 
-		var myobject = {'equipo':$scope.equipo, 'modelo':$scope.modelo, 'fecha_desde':$scope.fecha_desde, 'fecha_hasta':$scope.fecha_hasta, 'comentarios':$scope.comentarios, 'id_user':localStorage.id_user};
+		var myobject = {
+			'equipo': $scope.equipo,
+			'modelo': $scope.modelo,
+			'fecha_desde': $scope.fecha_desde,
+			'fecha_hasta': $scope.fecha_hasta,
+			'comentarios': $scope.comentarios,
+			'id_user': localStorage.id_user
+		};
 
-				Object.toparams = function ObjecttoParams(obj) {
-					var p = [];
-					for (var key in obj) {
-						p.push(key + '=' + encodeURIComponent(obj[key]));
-					}
-					return p.join('&');
-				};
+		Object.toparams = function ObjecttoParams(obj) {
+			var p = [];
+			for (var key in obj) {
+				p.push(key + '=' + encodeURIComponent(obj[key]));
+			}
+			return p.join('&');
+		};
 
-				$http({
-					method: 'POST',
-					url: server + 'index.php?api=postventa',
-					data: Object.toparams(myobject),
-					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-				}).then(function (response){
-					console.log(response.data);
+		$http({
+			method: 'POST',
+			url: server + 'index.php?api=postventa',
+			data: Object.toparams(myobject),
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+		}).then(function (response) {
+			console.log(response.data);
 
-					if(response.data.ok){
+			if (response.data.ok) {
 
-						$scope.equipo= "";
-						$scope.modelo= "";
-						$scope.fecha_desde= "";
-						$scope.fecha_hasta= "";
-						$scope.comentarios= "";
+				$scope.equipo = "";
+				$scope.modelo = "";
+				$scope.fecha_desde = "";
+				$scope.fecha_hasta = "";
+				$scope.comentarios = "";
 
-						showAlert(response.data.ok);
-						$location.path('/home');
-					}
+				showAlert(response.data.ok);
+				$location.path('/home');
+			}
 
-					if(response.data.error){
-						showAlert(response.data.error);
-					}
+			if (response.data.error) {
+				showAlert(response.data.error);
+			}
 
-				 },function (error){
-					console.log('Errores');
-					//console.log(response.data);
-					showAlert(response.data.error);
-				 });
+		}, function (error) {
+			console.log('Errores');
+			//console.log(response.data);
+			showAlert(response.data.error);
+		});
 
 	};
 });
 
 
-animateApp.controller('sucursalesController', function($scope) {
-  angular.element('header nav').css('visibility','visible');
-  angular.element('#volver').css('display','block');
-  $scope.pageClass = 'page-about';
-	$scope.open = function(url){
+animateApp.controller('sucursalesController', function ($scope) {
+	angular.element('header nav').css('visibility', 'visible');
+	angular.element('#volver').css('display', 'block');
+	$scope.pageClass = 'page-about';
+	$scope.open = function (url) {
 		window.open(url);
 		//showAlert(url);
 	}
 });
 
-animateApp.controller('registroController', function($scope, $http, $location) {
-    $scope.pageClass = 'page-home';
-	  $scope.registro = function() {
+animateApp.controller('registroController', function ($scope, $http, $location) {
+	$scope.pageClass = 'page-home';
+	$scope.registro = function () {
 
-      if($scope.password.length<6){
-    			showAlert('la password debe tener al menos 6 caracteres');
-    		}else{
+		if ($scope.password.length < 6) {
+			showAlert('la password debe tener al menos 6 caracteres');
+		} else {
 
-  			if($scope.password !== $scope.cpassword ){
-  				showAlert('debes confirmar tu password');
-  			}else{
+			if ($scope.password !== $scope.cpassword) {
+				showAlert('debes confirmar tu password');
+			} else {
 
 
-  				var myobject = {'nombre':$scope.nombre, 'email':$scope.email, 'telefono':$scope.telefono, 'empresa':$scope.empresa, 'cargo':$scope.cargo, 'password':$scope.password};
+				var myobject = {
+					'nombre': $scope.nombre,
+					'email': $scope.email,
+					'telefono': $scope.telefono,
+					'empresa': $scope.empresa,
+					'cargo': $scope.cargo,
+					'password': $scope.password
+				};
 
-  				Object.toparams = function ObjecttoParams(obj) {
-  					var p = [];
-  					for (var key in obj) {
-  						p.push(key + '=' + encodeURIComponent(obj[key]));
-  					}
-  					return p.join('&');
-  				};
+				Object.toparams = function ObjecttoParams(obj) {
+					var p = [];
+					for (var key in obj) {
+						p.push(key + '=' + encodeURIComponent(obj[key]));
+					}
+					return p.join('&');
+				};
 
-  				$http({
-  					method: 'POST',
-  					url: server + 'index.php?api=registro',
-  					data: Object.toparams(myobject),
-  					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-  				}).then(function (response){
-  					console.log(response.data);
-  					if(response.data.id>0){
-  						/*
-  						localStorage.id_user = response.data.id;
-  						localStorage.nombre = response.data.nombre;
-  						*/
-  						showAlert('Te haz registrado con éxito, ahora puedes ingresar');
-  						$location.path('/');
-  					}
+				$http({
+					method: 'POST',
+					url: server + 'index.php?api=registro',
+					data: Object.toparams(myobject),
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					}
+				}).then(function (response) {
+					console.log(response.data);
+					if (response.data.id > 0) {
+						/*
+						localStorage.id_user = response.data.id;
+						localStorage.nombre = response.data.nombre;
+						*/
+						showAlert('Te haz registrado con éxito, ahora puedes ingresar');
+						$location.path('/');
+					}
 
-  					if(response.data.error){
-  						showAlert(response.data.error);
-  					}
-  				 },function (error){
-  					console.log('Errores');
-  					//console.log(response.data);
-  					showAlert(response.data.error);
-  				 });
+					if (response.data.error) {
+						showAlert(response.data.error);
+					}
+				}, function (error) {
+					console.log('Errores');
+					//console.log(response.data);
+					showAlert(response.data.error);
+				});
 
 
 			}
@@ -279,117 +314,132 @@ animateApp.controller('registroController', function($scope, $http, $location) {
 		}
 
 
-    }
+	}
 });
 
-animateApp.controller('sosController', function($scope, $http, $location) {
-  angular.element('header nav').css('visibility','visible');
-  angular.element('#volver').css('display','block');
-    $scope.pageClass = 'page-about';
-	   $scope.enviar = function(){
+animateApp.controller('sosController', function ($scope, $http, $location) {
+	angular.element('header nav').css('visibility', 'visible');
+	angular.element('#volver').css('display', 'block');
+	$scope.pageClass = 'page-about';
+	$scope.enviar = function () {
 
-		var myobject = {'problema':$scope.problema, 'telefono':$scope.telefono, 'id_user':localStorage.id_user};
+		var myobject = {
+			'problema': $scope.problema,
+			'telefono': $scope.telefono,
+			'id_user': localStorage.id_user
+		};
 
-				Object.toparams = function ObjecttoParams(obj) {
-					var p = [];
-					for (var key in obj) {
-						p.push(key + '=' + encodeURIComponent(obj[key]));
-					}
-					return p.join('&');
-				};
+		Object.toparams = function ObjecttoParams(obj) {
+			var p = [];
+			for (var key in obj) {
+				p.push(key + '=' + encodeURIComponent(obj[key]));
+			}
+			return p.join('&');
+		};
 
-				$http({
-					method: 'POST',
-					url: server + 'index.php?api=sos',
-					data: Object.toparams(myobject),
-					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-				}).then(function (response){
-					console.log(response.data);
+		$http({
+			method: 'POST',
+			url: server + 'index.php?api=sos',
+			data: Object.toparams(myobject),
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+		}).then(function (response) {
+			console.log(response.data);
 
-					if(response.data.ok){
-						showAlert(response.data.ok);
-						$scope.problema= "";
-						$scope.telefono= "";
-						$location.path('/home');
-					}
+			if (response.data.ok) {
+				showAlert(response.data.ok);
+				$scope.problema = "";
+				$scope.telefono = "";
+				$location.path('/home');
+			}
 
-					if(response.data.error){
-						showAlert(response.data.error);
-					}
+			if (response.data.error) {
+				showAlert(response.data.error);
+			}
 
-				 },function (error){
-					console.log('Errores');
-					//console.log(response.data);
-					showAlert(response.data.error);
-				 });
+		}, function (error) {
+			console.log('Errores');
+			//console.log(response.data);
+			showAlert(response.data.error);
+		});
 
 	};
 
 });
 
-animateApp.controller('editar-datosController', function($scope, $http, $location) {
+animateApp.controller('editar-datosController', function ($scope, $http, $location) {
 
-  angular.element('header nav').css('visibility','visible');
-  angular.element('#volver').css('display','block');
+	angular.element('header nav').css('visibility', 'visible');
+	angular.element('#volver').css('display', 'block');
 
-	if(localStorage.id_user>0){
-		$http.get(server + 'index.php?api=get_user&id='+localStorage.id_user)
-		.then(function(response) {
-			console.log(response.data);
-			$scope.nombre = response.data.nombre;
-			$scope.email = response.data.email;
-			$scope.cargo = response.data.cargo;
-			$scope.telefono = response.data.telefono;
-			$scope.empresa = response.data.empresa;
-		});
+	if (localStorage.id_user > 0) {
+		$http.get(server + 'index.php?api=get_user&id=' + localStorage.id_user)
+			.then(function (response) {
+				console.log(response.data);
+				$scope.nombre = response.data.nombre;
+				$scope.email = response.data.email;
+				$scope.cargo = response.data.cargo;
+				$scope.telefono = response.data.telefono;
+				$scope.empresa = response.data.empresa;
+			});
 
-	}else{
+	} else {
 		showAlert('El usuario no éxiste');
 		$location.path('/');
 	}
 
-  $scope.pageClass = 'page-about';
-	$scope.guardar_datos = function() {
+	$scope.pageClass = 'page-about';
+	$scope.guardar_datos = function () {
 
-		var myobject = {'nombre':$scope.nombre, 'email':$scope.email, 'telefono':$scope.telefono, 'empresa':$scope.empresa, 'cargo':$scope.cargo,'id':localStorage.id_user};
+		var myobject = {
+			'nombre': $scope.nombre,
+			'email': $scope.email,
+			'telefono': $scope.telefono,
+			'empresa': $scope.empresa,
+			'cargo': $scope.cargo,
+			'id': localStorage.id_user
+		};
 
-				Object.toparams = function ObjecttoParams(obj) {
-					var p = [];
-					for (var key in obj) {
-						p.push(key + '=' + encodeURIComponent(obj[key]));
-					}
-					return p.join('&');
-				};
+		Object.toparams = function ObjecttoParams(obj) {
+			var p = [];
+			for (var key in obj) {
+				p.push(key + '=' + encodeURIComponent(obj[key]));
+			}
+			return p.join('&');
+		};
 
-				$http({
-					method: 'POST',
-					url: server + 'index.php?api=update_user',
-					data: Object.toparams(myobject),
-					headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-				}).then(function (response){
-					console.log(response.data);
-					localStorage.nombre = $scope.nombre;
+		$http({
+			method: 'POST',
+			url: server + 'index.php?api=update_user',
+			data: Object.toparams(myobject),
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+		}).then(function (response) {
+			console.log(response.data);
+			localStorage.nombre = $scope.nombre;
 
-					if(response.data.ok){
-						showAlert(response.data.ok);
-						$location.path('/home');
-					}
+			if (response.data.ok) {
+				showAlert(response.data.ok);
+				$location.path('/home');
+			}
 
-					if(response.data.error){
-						showAlert(response.data.error);
-					}
-				 },function (error){
-					console.log('Errores');
-					//console.log(response.data);
-					showAlert(response.data.error);
-				 });
+			if (response.data.error) {
+				showAlert(response.data.error);
+			}
+		}, function (error) {
+			console.log('Errores');
+			//console.log(response.data);
+			showAlert(response.data.error);
+		});
 
-    }
+	}
 });
 
-animateApp.controller('salirController', function($scope,$location) {
-    $scope.pageClass = 'page-about';
-    localStorage.id_user = null;
-    localStorage.nombre = null;
-    $location.path('/');
+animateApp.controller('salirController', function ($scope, $location) {
+	$scope.pageClass = 'page-about';
+	localStorage.id_user = null;
+	localStorage.nombre = null;
+	$location.path('/');
 });

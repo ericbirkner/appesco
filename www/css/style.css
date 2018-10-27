@@ -19,7 +19,7 @@ body {
 }
 
 main {
-	flex: 1 0 auto;
+	
 }
 
 a, .celeste {
@@ -118,10 +118,13 @@ button.boton{
 
 .page {
 	bottom: 0;
-	position: absolute;
 	text-align: center;
-	top: 130px;
 	width: 100%;
+	padding-bottom: 70px;
+}
+
+form .row{
+	margin-bottom: 10px;
 }
 
 a.back{
@@ -178,14 +181,21 @@ textarea#problema, textarea#comentarios{
 
 footer{
 	position: fixed;
-	bottom: 0;
+	bottom: -48px;
 	left: 0;
 	color: #ffffff;
 	font-size: 0.7em;
 	width: 100%;
 	height: 58px;
+	padding: 10px 0 0 0;
 	background: url(../img/bkg-cyan.png) repeat-x;
 	background-size: auto 100%;
+}
+
+footer.active{
+	bottom: 0;
+	padding: 0;
+	height: 65px;
 }
 
 footer img.icon{
@@ -201,14 +211,7 @@ footer .desc{
 
 /* PAGES
 ============================================================================= */
-.page-home {
-	padding-top: 20px;
-}
-.page-about {
-	padding-top: 25px;
-}
-.page-contact {
-}
+
 /* ANIMATIONS
 ============================================================================= */
 
