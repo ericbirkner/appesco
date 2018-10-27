@@ -3,6 +3,63 @@ var animateApp = angular.module('animateApp', ['ngRoute', 'ngAnimate']);
 //var server = "http://192.168.0.210/appesco_api/";
 var server = "http://pesco.cl/appesco_api/";
 
+
+
+// Custom interceptor factoring
+animateApp.factory('httpLoadingInterceptor', ['$q', '$rootScope', function ($q, $rootScope) {
+    // Request iteration counter - count requests started
+    var reqIteration = 0;
+    return {
+        request: function (config) {
+            // Firing event only if current request was the first
+            if(reqIteration === 0){
+          		$rootScope.$broadcast('globalLoadingStart');
+            }
+            // Increasing request iteration
+            reqIteration++;
+            return config || $q.when(config);
+        },
+        response : function(config){
+          // Decreasing request iteration
+          reqIteration--;
+          // Firing event only if current response was came to the last request
+          if(!reqIteration){
+          	$rootScope.$broadcast('globalLoadingEnd');
+          }
+          return config || $q.when(config);
+        }
+    };
+}])
+
+// Injecting our custom loader interceptor
+
+
+// Directive for loading
+animateApp.directive('ionLoader', function(){
+  return {
+    restrict: 'E',
+    replace: true,
+    template: '<div class="ion-loader"><svg class="ion-loader-circle"> <circle class="ion-loader-path" cx="50%" cy="50%" r="20" fill="none" stroke-miterlimit="10"/></svg></div>',
+    link:function(scope,element){
+      
+      // Applying base class to the element
+      angular.element(element).addClass('ion-hide');
+      
+      // Listening to 'globalLoadingStart' event fired by interceptor on request sending
+      scope.$on('globalLoadingStart',function(){
+        console.log("Loading started...");
+        angular.element(element).toggleClass('ion-show ion-hide');
+      });
+      
+      // Listening to 'globalLoadingEnd' event fired by interceptor on response receiving
+      scope.$on('globalLoadingEnd',function(){
+        console.log("Loading ended...");
+        angular.element(element).toggleClass('ion-hide ion-show');
+      });
+    }
+  }
+})
+
 animateApp.config(function ($routeProvider) {
 	$routeProvider
 		.when('/', {
@@ -49,7 +106,9 @@ animateApp.config(function ($routeProvider) {
 			templateUrl: 'page-sos.html',
 			controller: 'sosController'
 		});
-});
+}).config(['$httpProvider', function ($httpProvider) {
+    $httpProvider.interceptors.push('httpLoadingInterceptor');
+}]);
 
 animateApp.controller('mainController', function ($scope, $location, $http) {
 	$scope.pageClass = 'page-about';
