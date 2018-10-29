@@ -74,6 +74,10 @@ animateApp.config(function ($routeProvider) {
 			templateUrl: 'page-registro.html',
 			controller: 'registroController'
 		})
+		.when('/contrasena', {
+			templateUrl: 'page-contrasena.html',
+			controller: 'contrasenaController'
+		})
 		.when('/editar-datos', {
 			templateUrl: 'page-user_info.html',
 			controller: 'editar-datosController'
@@ -107,6 +111,7 @@ animateApp.config(function ($routeProvider) {
 			controller: 'sosController'
 		});
 }).config(['$httpProvider', function ($httpProvider) {
+	//esto pone el circulito de carga mientras se hacen peticiones por ajax
     $httpProvider.interceptors.push('httpLoadingInterceptor');
 }]);
 
@@ -116,9 +121,7 @@ animateApp.controller('mainController', function ($scope, $location, $http) {
 	console.log(localStorage.id_user);
 
 	if (localStorage.id_user > 0) {
-
 		$location.path('/home');
-
 	}
 
 	$scope.login = function () {
@@ -164,10 +167,70 @@ animateApp.controller('mainController', function ($scope, $location, $http) {
 	};
 
 });
+//home
+animateApp.controller('homeController', function ($scope) {
+	$scope.pageClass = 'page-about';
+	angular.element('header nav').css('visibility', 'visible');
+	angular.element('#volver').css('display', 'none');
+	angular.element('footer').addClass('active');
+});
+
+//recupera contraseña
+animateApp.controller('contrasenaController', function ($scope, $http, $location) {
+	
+	$scope.pageClass = 'page-about';
+	$scope.enviar = function () {
+
+		var myobject = {
+			'email': $scope.email
+		};
+
+		Object.toparams = function ObjecttoParams(obj) {
+			var p = [];
+			for (var key in obj) {
+				p.push(key + '=' + encodeURIComponent(obj[key]));
+			}
+			return p.join('&');
+		};
+
+		$http({
+			method: 'POST',
+			url: server + 'index.php?api=get_email',
+			data: Object.toparams(myobject),
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded'
+			}
+		}).then(function (response) {
+			console.log(response.data);
+
+			if (response.data.ok) {
+				showAlert(response.data.ok);
+				$location.path('/login');
+			}
+
+			if (response.data.error) {
+				showAlert(response.data.error);
+			}
+
+		}, function (error) {
+			console.log('Errores');
+			//console.log(response.data);
+			showAlert(response.data.error);
+		});
+
+	};
+
+});
+
 
 animateApp.controller('ventasController', function ($scope) {
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
+	
+	if(!angular.element('footer').hasClass("active")){
+		angular.element('footer').addClass('active');
+	 }
+	
 	$scope.pageClass = 'page-about';	
 	
 });
@@ -176,6 +239,11 @@ animateApp.controller('ventasController', function ($scope) {
 animateApp.controller('form-ventasController', function ($scope, $location, $http,$routeParams) {
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
+	
+	if(!angular.element('footer').hasClass("active")){
+		angular.element('footer').addClass('active');
+	 }
+	
 	$scope.pageClass = 'page-about';
 	$scope.tipo= $routeParams.tipo;
 	$scope.enviar = function () {
@@ -184,6 +252,7 @@ animateApp.controller('form-ventasController', function ($scope, $location, $htt
 			'equipo': $scope.equipo,
 			'telefono': $scope.telefono,
 			'email': $scope.email,
+			'tipo': $scope.tipo,
 			'id_user': localStorage.id_user
 		};
 
@@ -228,16 +297,14 @@ animateApp.controller('form-ventasController', function ($scope, $location, $htt
 });
 
 
-animateApp.controller('homeController', function ($scope) {
-	$scope.pageClass = 'page-about';
-	angular.element('header nav').css('visibility', 'visible');
-	angular.element('#volver').css('display', 'none');
-	angular.element('footer').addClass('active');
-});
-
 animateApp.controller('postventaController', function ($scope, $http, $location) {
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
+	
+	if(!angular.element('footer').hasClass("active")){
+		angular.element('footer').addClass('active');
+	 }
+	
 	$scope.pageClass = 'page-about';
 	$scope.ocultar = function (val) {
 
@@ -316,6 +383,11 @@ animateApp.controller('postventaController', function ($scope, $http, $location)
 animateApp.controller('sucursalesController', function ($scope) {
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
+	
+	if(!angular.element('footer').hasClass("active")){
+		angular.element('footer').addClass('active');
+	 }
+	
 	$scope.pageClass = 'page-about';
 	$scope.open = function (url) {
 		window.open(url);
@@ -391,6 +463,11 @@ animateApp.controller('registroController', function ($scope, $http, $location) 
 
 animateApp.controller('sosController', function ($scope, $http, $location) {
 	angular.element('header nav').css('visibility', 'visible');
+	
+	if(!angular.element('footer').hasClass("active")){
+		angular.element('footer').addClass('active');
+	 }
+	
 	angular.element('#volver').css('display', 'block');
 	$scope.pageClass = 'page-about';
 	$scope.enviar = function () {
@@ -443,6 +520,11 @@ animateApp.controller('sosController', function ($scope, $http, $location) {
 animateApp.controller('editar-datosController', function ($scope, $http, $location) {
 
 	angular.element('header nav').css('visibility', 'visible');
+	
+	if(!angular.element('footer').hasClass("active")){
+		angular.element('footer').addClass('active');
+	 }
+	
 	angular.element('#volver').css('display', 'block');
 
 	if (localStorage.id_user > 0) {
