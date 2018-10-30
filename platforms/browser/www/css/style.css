@@ -227,6 +227,7 @@ footer{
 	padding: 10px 0 0 0;
 	background: url(../img/bkg-cyan.png) repeat-x;
 	background-size: auto 100%;
+	z-index: 10;
 }
 
 footer.active{
@@ -244,6 +245,10 @@ footer img.icon{
 
 footer .desc{
 	text-align: center;
+}
+
+footer a{
+	color: #ffffff;
 }
 
 

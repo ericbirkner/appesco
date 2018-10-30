@@ -122,6 +122,8 @@ animateApp.controller('mainController', function ($scope, $location, $http) {
 
 	if (localStorage.id_user > 0) {
 		$location.path('/home');
+	}else{
+		angular.element('header nav').css('visibility', 'hidden');
 	}
 
 	$scope.login = function () {
