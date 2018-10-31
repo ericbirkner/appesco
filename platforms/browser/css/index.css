@@ -24,17 +24,13 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
+    
+	background: #00dff1; /* Old browsers */
+	background: -moz-linear-gradient(top, #00dff1 0%, #01d9f0 9%, #00d8ed 9%, #00d2ed 22%, #00cdec 27%, #00cbe9 28%, #00cbeb 31%, #00c8e9 32%, #00c5e8 41%, #00c0e5 44%, #01bee6 50%, #00bde3 50%, #00b7e3 61%, #00b5e0 61%, #00b0e1 72%, #00afde 73%, #00a5dd 88%, #00a5db 89%, #00a2d9 89%, #00a3dc 89%, #00a2d9 89%, #00a3dc 89%, #00a3dc 90%, #01a2d9 92%, #019dda 99%, #009cd7 100%); 
+	background: -webkit-linear-gradient(top, #00dff1 0%,#01d9f0 9%,#00d8ed 9%,#00d2ed 22%,#00cdec 27%,#00cbe9 28%,#00cbeb 31%,#00c8e9 32%,#00c5e8 41%,#00c0e5 44%,#01bee6 50%,#00bde3 50%,#00b7e3 61%,#00b5e0 61%,#00b0e1 72%,#00afde 73%,#00a5dd 88%,#00a5db 89%,#00a2d9 89%,#00a3dc 89%,#00a2d9 89%,#00a3dc 89%,#00a3dc 90%,#01a2d9 92%,#019dda 99%,#009cd7 100%);
+	background: linear-gradient(to bottom, #00dff1 0%,#01d9f0 9%,#00d8ed 9%,#00d2ed 22%,#00cdec 27%,#00cbe9 28%,#00cbeb 31%,#00c8e9 32%,#00c5e8 41%,#00c0e5 44%,#01bee6 50%,#00bde3 50%,#00b7e3 61%,#00b5e0 61%,#00b0e1 72%,#00afde 73%,#00a5dd 88%,#00a5db 89%,#00a2d9 89%,#00a3dc 89%,#00a2d9 89%,#00a3dc 89%,#00a3dc 90%,#01a2d9 92%,#019dda 99%,#009cd7 100%); 
+	
+	
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
