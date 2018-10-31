@@ -15,15 +15,15 @@ function alertDismissed() {
 //
 function showAlert(msg) {
 	//cambiar cuando se testea por navegador
-	/*
+	
 	navigator.notification.alert(
 		msg,  // message
 		alertDismissed,         // callback
 		'Pesco App',            // title
 		'Cerrar'                  // buttonName
 	);
-	*/
-	alert(msg);
+	
+	//alert(msg);
 	
 	
 }
