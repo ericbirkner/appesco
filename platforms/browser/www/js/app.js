@@ -7,57 +7,57 @@ var server = "http://pesco.cl/appesco_api/";
 
 // Custom interceptor factoring
 animateApp.factory('httpLoadingInterceptor', ['$q', '$rootScope', function ($q, $rootScope) {
-    // Request iteration counter - count requests started
-    var reqIteration = 0;
-    return {
-        request: function (config) {
-            // Firing event only if current request was the first
-            if(reqIteration === 0){
-          		$rootScope.$broadcast('globalLoadingStart');
-            }
-            // Increasing request iteration
-            reqIteration++;
-            return config || $q.when(config);
-        },
-        response : function(config){
-          // Decreasing request iteration
-          reqIteration--;
-          // Firing event only if current response was came to the last request
-          if(!reqIteration){
-          	$rootScope.$broadcast('globalLoadingEnd');
-          }
-          return config || $q.when(config);
-        }
-    };
+	// Request iteration counter - count requests started
+	var reqIteration = 0;
+	return {
+		request: function (config) {
+			// Firing event only if current request was the first
+			if (reqIteration === 0) {
+				$rootScope.$broadcast('globalLoadingStart');
+			}
+			// Increasing request iteration
+			reqIteration++;
+			return config || $q.when(config);
+		},
+		response: function (config) {
+			// Decreasing request iteration
+			reqIteration--;
+			// Firing event only if current response was came to the last request
+			if (!reqIteration) {
+				$rootScope.$broadcast('globalLoadingEnd');
+			}
+			return config || $q.when(config);
+		}
+	};
 }])
 
 // Injecting our custom loader interceptor
 
 
 // Directive for loading
-animateApp.directive('ionLoader', function(){
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<div class="ion-loader"><svg class="ion-loader-circle"> <circle class="ion-loader-path" cx="50%" cy="50%" r="20" fill="none" stroke-miterlimit="10"/></svg></div>',
-    link:function(scope,element){
-      
-      // Applying base class to the element
-      angular.element(element).addClass('ion-hide');
-      
-      // Listening to 'globalLoadingStart' event fired by interceptor on request sending
-      scope.$on('globalLoadingStart',function(){
-        console.log("Loading started...");
-        angular.element(element).toggleClass('ion-show ion-hide');
-      });
-      
-      // Listening to 'globalLoadingEnd' event fired by interceptor on response receiving
-      scope.$on('globalLoadingEnd',function(){
-        console.log("Loading ended...");
-        angular.element(element).toggleClass('ion-hide ion-show');
-      });
-    }
-  }
+animateApp.directive('ionLoader', function () {
+	return {
+		restrict: 'E',
+		replace: true,
+		template: '<div class="ion-loader"><svg class="ion-loader-circle"> <circle class="ion-loader-path" cx="50%" cy="50%" r="20" fill="none" stroke-miterlimit="10"/></svg></div>',
+		link: function (scope, element) {
+
+			// Applying base class to the element
+			angular.element(element).addClass('ion-hide');
+
+			// Listening to 'globalLoadingStart' event fired by interceptor on request sending
+			scope.$on('globalLoadingStart', function () {
+				console.log("Loading started...");
+				angular.element(element).toggleClass('ion-show ion-hide');
+			});
+
+			// Listening to 'globalLoadingEnd' event fired by interceptor on response receiving
+			scope.$on('globalLoadingEnd', function () {
+				console.log("Loading ended...");
+				angular.element(element).toggleClass('ion-hide ion-show');
+			});
+		}
+	}
 })
 
 animateApp.config(function ($routeProvider) {
@@ -112,7 +112,7 @@ animateApp.config(function ($routeProvider) {
 		});
 }).config(['$httpProvider', function ($httpProvider) {
 	//esto pone el circulito de carga mientras se hacen peticiones por ajax
-    $httpProvider.interceptors.push('httpLoadingInterceptor');
+	$httpProvider.interceptors.push('httpLoadingInterceptor');
 }]);
 
 animateApp.controller('mainController', function ($scope, $location, $http) {
@@ -122,7 +122,7 @@ animateApp.controller('mainController', function ($scope, $location, $http) {
 
 	if (localStorage.id_user > 0) {
 		$location.path('/home');
-	}else{
+	} else {
 		angular.element('header nav').css('visibility', 'hidden');
 	}
 
@@ -170,7 +170,7 @@ animateApp.controller('mainController', function ($scope, $location, $http) {
 
 });
 //home
-animateApp.controller('homeController', function ($scope) {
+animateApp.controller('homeController', function ($scope, $location) {
 	$scope.pageClass = 'page-about';
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'none');
@@ -179,7 +179,7 @@ animateApp.controller('homeController', function ($scope) {
 
 //recupera contraseña
 animateApp.controller('contrasenaController', function ($scope, $http, $location) {
-	
+
 	$scope.pageClass = 'page-about';
 	$scope.enviar = function () {
 
@@ -228,26 +228,27 @@ animateApp.controller('contrasenaController', function ($scope, $http, $location
 animateApp.controller('ventasController', function ($scope) {
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
-	
-	if(!angular.element('footer').hasClass("active")){
+
+	if (!angular.element('footer').hasClass("active")) {
 		angular.element('footer').addClass('active');
-	 }
-	
-	$scope.pageClass = 'page-about';	
-	
+	}
+
+	$scope.pageClass = 'page-about';
+
 });
 
 
-animateApp.controller('form-ventasController', function ($scope, $location, $http,$routeParams) {
+animateApp.controller('form-ventasController', function ($scope, $location, $http, $routeParams) {
+
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
-	
-	if(!angular.element('footer').hasClass("active")){
+
+	if (!angular.element('footer').hasClass("active")) {
 		angular.element('footer').addClass('active');
-	 }
-	
+	}
+
 	$scope.pageClass = 'page-about';
-	$scope.tipo= $routeParams.tipo;
+	$scope.tipo = $routeParams.tipo;
 	$scope.enviar = function () {
 
 		var myobject = {
@@ -302,11 +303,11 @@ animateApp.controller('form-ventasController', function ($scope, $location, $htt
 animateApp.controller('postventaController', function ($scope, $http, $location) {
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
-	
-	if(!angular.element('footer').hasClass("active")){
+
+	if (!angular.element('footer').hasClass("active")) {
 		angular.element('footer').addClass('active');
-	 }
-	
+	}
+
 	$scope.pageClass = 'page-about';
 	$scope.ocultar = function (val) {
 
@@ -385,11 +386,11 @@ animateApp.controller('postventaController', function ($scope, $http, $location)
 animateApp.controller('sucursalesController', function ($scope) {
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
-	
-	if(!angular.element('footer').hasClass("active")){
+
+	if (!angular.element('footer').hasClass("active")) {
 		angular.element('footer').addClass('active');
-	 }
-	
+	}
+
 	$scope.pageClass = 'page-about';
 	$scope.open = function (url) {
 		window.open(url);
@@ -465,11 +466,11 @@ animateApp.controller('registroController', function ($scope, $http, $location) 
 
 animateApp.controller('sosController', function ($scope, $http, $location) {
 	angular.element('header nav').css('visibility', 'visible');
-	
-	if(!angular.element('footer').hasClass("active")){
+
+	if (!angular.element('footer').hasClass("active")) {
 		angular.element('footer').addClass('active');
-	 }
-	
+	}
+
 	angular.element('#volver').css('display', 'block');
 	$scope.pageClass = 'page-about';
 	$scope.enviar = function () {
@@ -522,11 +523,11 @@ animateApp.controller('sosController', function ($scope, $http, $location) {
 animateApp.controller('editar-datosController', function ($scope, $http, $location) {
 
 	angular.element('header nav').css('visibility', 'visible');
-	
-	if(!angular.element('footer').hasClass("active")){
+
+	if (!angular.element('footer').hasClass("active")) {
 		angular.element('footer').addClass('active');
-	 }
-	
+	}
+
 	angular.element('#volver').css('display', 'block');
 
 	if (localStorage.id_user > 0) {
