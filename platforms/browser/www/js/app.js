@@ -224,10 +224,78 @@ animateApp.controller('contrasenaController', function ($scope, $http, $location
 
 });
 
+//registro
+animateApp.controller('registroController', function ($scope, $http, $location) {
+	$scope.pageClass = 'page-home';
+	$scope.registro = function () {
 
-animateApp.controller('ventasController', function ($scope) {
+		if ($scope.password.length < 6) {
+			showAlert('la password debe tener al menos 6 caracteres');
+		} else {
+
+			if ($scope.password !== $scope.cpassword) {
+				showAlert('debes confirmar tu password');
+			} else {
+
+
+				var myobject = {
+					'nombre': $scope.nombre,
+					'email': $scope.email,
+					'telefono': $scope.telefono,
+					'empresa': $scope.empresa,
+					'cargo': $scope.cargo,
+					'password': $scope.password
+				};
+
+				Object.toparams = function ObjecttoParams(obj) {
+					var p = [];
+					for (var key in obj) {
+						p.push(key + '=' + encodeURIComponent(obj[key]));
+					}
+					return p.join('&');
+				};
+
+				$http({
+					method: 'POST',
+					url: server + 'index.php?api=registro',
+					data: Object.toparams(myobject),
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					}
+				}).then(function (response) {
+					console.log(response.data);
+					if (response.data.id > 0) {
+						/*
+						localStorage.id_user = response.data.id;
+						localStorage.nombre = response.data.nombre;
+						*/
+						showAlert('Te haz registrado con éxito, ahora puedes ingresar');
+						$location.path('/');
+					}
+
+					if (response.data.error) {
+						showAlert(response.data.error);
+					}
+				}, function (error) {
+					console.log('Errores');
+					//console.log(response.data);
+					showAlert(response.data.error);
+				});
+
+
+			}
+
+		}
+
+
+	}
+});
+
+
+animateApp.controller('ventasController', function ($scope, $location) {
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
+	angular.element('#volver').attr('href','#home');
 
 	if (!angular.element('footer').hasClass("active")) {
 		angular.element('footer').addClass('active');
@@ -242,6 +310,7 @@ animateApp.controller('form-ventasController', function ($scope, $location, $htt
 
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
+	angular.element('#volver').attr('href','#ventas');
 
 	if (!angular.element('footer').hasClass("active")) {
 		angular.element('footer').addClass('active');
@@ -303,7 +372,8 @@ animateApp.controller('form-ventasController', function ($scope, $location, $htt
 animateApp.controller('postventaController', function ($scope, $http, $location) {
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
-
+	angular.element('#volver').attr('href','#home');
+	
 	if (!angular.element('footer').hasClass("active")) {
 		angular.element('footer').addClass('active');
 	}
@@ -386,6 +456,7 @@ animateApp.controller('postventaController', function ($scope, $http, $location)
 animateApp.controller('sucursalesController', function ($scope) {
 	angular.element('header nav').css('visibility', 'visible');
 	angular.element('#volver').css('display', 'block');
+	angular.element('#volver').attr('href','#home');
 
 	if (!angular.element('footer').hasClass("active")) {
 		angular.element('footer').addClass('active');
@@ -398,74 +469,10 @@ animateApp.controller('sucursalesController', function ($scope) {
 	}
 });
 
-animateApp.controller('registroController', function ($scope, $http, $location) {
-	$scope.pageClass = 'page-home';
-	$scope.registro = function () {
-
-		if ($scope.password.length < 6) {
-			showAlert('la password debe tener al menos 6 caracteres');
-		} else {
-
-			if ($scope.password !== $scope.cpassword) {
-				showAlert('debes confirmar tu password');
-			} else {
-
-
-				var myobject = {
-					'nombre': $scope.nombre,
-					'email': $scope.email,
-					'telefono': $scope.telefono,
-					'empresa': $scope.empresa,
-					'cargo': $scope.cargo,
-					'password': $scope.password
-				};
-
-				Object.toparams = function ObjecttoParams(obj) {
-					var p = [];
-					for (var key in obj) {
-						p.push(key + '=' + encodeURIComponent(obj[key]));
-					}
-					return p.join('&');
-				};
-
-				$http({
-					method: 'POST',
-					url: server + 'index.php?api=registro',
-					data: Object.toparams(myobject),
-					headers: {
-						'Content-Type': 'application/x-www-form-urlencoded'
-					}
-				}).then(function (response) {
-					console.log(response.data);
-					if (response.data.id > 0) {
-						/*
-						localStorage.id_user = response.data.id;
-						localStorage.nombre = response.data.nombre;
-						*/
-						showAlert('Te haz registrado con éxito, ahora puedes ingresar');
-						$location.path('/');
-					}
-
-					if (response.data.error) {
-						showAlert(response.data.error);
-					}
-				}, function (error) {
-					console.log('Errores');
-					//console.log(response.data);
-					showAlert(response.data.error);
-				});
-
-
-			}
-
-		}
-
-
-	}
-});
 
 animateApp.controller('sosController', function ($scope, $http, $location) {
 	angular.element('header nav').css('visibility', 'visible');
+	angular.element('#volver').attr('href','#home');
 
 	if (!angular.element('footer').hasClass("active")) {
 		angular.element('footer').addClass('active');

@@ -107,13 +107,13 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" launch-external="true" />
     <allow-intent href="geo:*" launch-external="true" />
-	<access origin="tel:*" launch-external="true" />
+    <access launch-external="true" origin="tel:*" />
     <platform name="android">
-       	<preference name="Orientation" value="portrait" />
+        <preference name="Orientation" value="portrait" />
         <allow-intent href="market:*" />
     </platform>
     <platform name="ios">
-       	<preference name="Orientation" value="portrait" />
+        <preference name="Orientation" value="portrait" />
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
