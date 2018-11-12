@@ -110,7 +110,9 @@
     <access launch-external="true" origin="tel:*" />
     <platform name="android">
         <preference name="Orientation" value="portrait" />
-        <allow-intent href="market:*" />
+        <preference name="SplashScreen" value="screen" />
+		<allow-intent href="market:*" />
+		
     </platform>
     <platform name="ios">
         <preference name="Orientation" value="portrait" />
