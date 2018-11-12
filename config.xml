@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="appesco" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>appesco</name>
+<widget id="pesco" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>PESCO</name>
     <description>
-        Pesco App
+        Pesco
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
         Simple Chile Spa
@@ -11,10 +11,7 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
 	
-	<preference name="SplashScreenDelay" value="3000" />  
-    <preference name="AutoHideSplashScreen" value="true" />  
-    <preference name="SplashScreen" value="www/res/screen/android" />  
-    <preference name="SplashMaintainAspectRatio" value="true" />  
+	
 	
     <plugin name="cordova-plugin-battery-status" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-camera" source="npm" spec="~2.1.1" />
