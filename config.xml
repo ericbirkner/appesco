@@ -8,6 +8,7 @@
         Simple Chile Spa
     </author>
     <content src="index.html" />
+	<preference name="phonegap-version" value="cli-8.0.0" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="26" />
     <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
