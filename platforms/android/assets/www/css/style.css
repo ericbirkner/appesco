@@ -1,0 +1,606 @@
+/* BASE STYLES
+============================================================================= */
+@import url('http://fonts.googleapis.com/css?family=Lato:400,700');
+body {
+	display: flex;
+	min-height: 100vh;
+	flex-direction: column;
+	margin: 0;
+	font-family: 'Lato', sans-serif;
+	background: #fff;
+	color: #545255;
+	text-transform: uppercase;
+}
+
+.barra_top{
+	background: url(../img/filete.png) repeat-x;
+	height: 10px;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+main {
+	
+}
+
+a, .celeste {
+	color: #03a1d7;
+}
+
+header nav{
+	color: #03a1d7;
+	background: none;
+	box-shadow: none;
+	visibility: hidden;
+}
+
+h2.seccion{
+	color: #03a1d7;
+	font-size: 1.5em;
+}
+
+nav a{
+	color: #03a1d7;
+}
+
+nav a#volver{
+	display: none;
+	background: url(../img/ico-volver.png) no-repeat;
+	background-size: 30px auto;
+	background-position: left center;
+	padding-left: 35px;
+}
+
+.logo-pesco{
+	padding: 15px 0 0 0;
+}
+
+.side-nav{
+	background: url('../img/Logo_Pesco_Blanco.png'), url('../img/fondo_cyan.png');
+	background-size: 65px auto, auto 100%;
+	background-repeat: no-repeat, repeat-x;
+	background-position: center 85%, top left;
+	color: #ffffff;
+}
+
+.side-nav a{
+	color: #ffffff;
+}
+
+.side-nav li:hover, .side-nav li.active{
+	background: none;
+	background-color: rgba(0,0,0,0.1);
+}
+
+nav ul a:hover{
+	background: initial;
+}
+
+.btn:hover, .btn-large:hover {
+	background-color: #2388c2;
+}
+
+.barra{
+	width: 100%;
+	height: 40px;
+	background-color: #40a8e4;
+	text-align: left;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 8;
+}
+
+.input-field input[type=date]:focus + label, .input-field input[type=text]:focus + label, .input-field input[type=email]:focus + label, .input-field input[type=password]:focus + label {
+	color: #e91e63;
+	text-transform: uppercase;
+}
+.input-field input[type=date]:focus, .input-field input[type=text]:focus, .input-field input[type=email]:focus, .input-field input[type=password]:focus {
+	border-bottom: 2px solid #e91e63;
+	box-shadow: none;
+}
+input[type=submit], button[type=submit] {
+	background: #40a8e4;
+	color: #ffffff;
+}
+
+input:not([type]), input[type=text], input[type=password], input[type=email], input[type=url], input[type=time], input[type=date], input[type=datetime-local], input[type=tel], input[type=number], input[type=search], textarea.materialize-textarea{
+	margin-bottom: 0;
+}
+
+button.boton{
+	width: 180px;
+	height: 48px;
+	background: url(../img/bkg-botones.png) no-repeat;
+	background-size: 100% auto;
+	border: none;
+	text-transform: uppercase;
+}
+
+.page {
+	bottom: 0;
+	text-align: center;
+	width: 100%;
+	padding-bottom: 70px;
+}
+
+form .row{
+	margin-bottom: 10px;
+}
+
+a.back{
+	background: #ffffff;
+	padding: 4px 16px;
+	margin-top: 5px;
+}
+
+
+.sucursales{
+	animation-duration: 2s;
+}
+
+
+.sucursales .row.fila{
+	margin: 0;
+	padding: 0;
+	
+}
+
+.sucursales .nombre{
+	text-align: right;
+	color: #03a1d7;
+	padding-top: 10px !important;
+	position: relative;
+	padding-right: 20px !important;
+	font-size: 0.9em;
+}
+
+.sucursales .nombre::after{
+	width: 12px;
+	height: 12px;
+	background: #03a1d7;
+	border-radius: 6px;
+	display: block;
+	content: "";
+	position: absolute;
+	right: -6px;
+	top: 50%;
+	margin:-6px 0 0 0;
+}
+
+.sucursales .direccion{
+	text-align: left;
+	font-size: 0.8em;
+	border-left: 2px solid #545255;
+	padding-bottom: 20px !important;
+	padding-top: 10px !important;
+}
+
+.sucursales .direccion h4{
+	margin: 0 0 10px 0;
+	font-size: 1.4em;
+	color: #40a8e4;
+}
+
+.sucursales .direccion strong{
+	font-weight: 700;
+	color: #222222;
+}
+
+a.nolink{
+	color: #545255;
+}
+
+.menu_app{
+	margin-top: 30px;
+}
+
+.menu_app .col{
+	animation-duration: 2s;
+}
+
+.menu_app img.img-servicio{
+	width: 55%;
+	height: auto;
+	display: block;
+	margin: 0 auto;
+	max-width: 80px;
+}
+
+.menu_app .desc{
+	font-size: 0.7em;
+	line-height: 1.3em !important;
+	margin-top: 5px;
+}
+
+textarea#problema, textarea#comentarios{
+	
+}
+
+footer{
+	position: fixed;
+	bottom: -48px;
+	left: 0;
+	color: #ffffff;
+	font-size: 0.7em;
+	width: 100%;
+	height: 58px;
+	padding: 10px 0 0 0;
+	background: url(../img/bkg-cyan.png) repeat-x;
+	background-size: auto 100%;
+	z-index: 10;
+}
+
+footer.active{
+	bottom: 0;
+	padding: 0;
+	height: 65px;
+}
+
+footer img.icon{
+	width: 30px;
+	height: auto;
+	display: block;
+	margin: 5px auto;
+}
+
+footer .desc{
+	text-align: center;
+}
+
+footer a{
+	color: #ffffff;
+}
+
+
+.input-field input:focus + label, .input-field textarea:focus + label {
+   color: #545255 !important;
+ }
+ /* label underline focus color */
+ .row .input-field input:focus, .row .input-field textarea:focus {
+   border-bottom: 1px solid #545255 !important;
+   box-shadow: none !important
+ }
+
+/* PAGES
+============================================================================= */
+
+/* ANIMATIONS
+============================================================================= */
+
+.page.ng-leave {
+	z-index: 9999;
+}
+.page.ng-enter {
+	z-index: 8888;
+}
+/* page specific animations ------------------------ */
+
+/* home -------------------------- */
+.page-home.ng-leave {
+	-webkit-animation: slideOutLeft 0.5s both ease-in;
+	-moz-animation: slideOutLeft 0.5s both ease-in;
+	animation: slideOutLeft 0.5s both ease-in;
+}
+.page-home.ng-enter {
+	-webkit-animation: scaleUp 0.5s both ease-in;
+	-moz-animation: scaleUp 0.5s both ease-in;
+	animation: scaleUp 0.5s both ease-in;
+}
+/* about ------------------------ */
+.page-about.ng-leave {
+	-webkit-animation: slideOutLeft 0.5s both ease-in;
+	-moz-animation: slideOutLeft 0.5s both ease-in;
+	animation: slideOutLeft 0.5s both ease-in;
+}
+.page-about.ng-enter {
+	-webkit-animation: slideInRight 0.5s both ease-in;
+	-moz-animation: slideInRight 0.5s both ease-in;
+	animation: slideInRight 0.5s both ease-in;
+}
+/* contact ---------------------- */
+.page-contact.ng-leave {
+	-webkit-animation: slideOutLeft 0.5s both ease-in;
+	-moz-animation: slideOutLeft 0.5s both ease-in;
+	animation: slideOutLeft 0.5s both ease-in;
+	/*
+	-webkit-transform-origin: 50% 50%;
+	-webkit-animation: rotateOutNewspaper .5s both ease-in;
+	-moz-transform-origin: 50% 50%;
+	-moz-animation: rotateOutNewspaper .5s both ease-in;
+	transform-origin: 50% 50%;
+	animation: rotateOutNewspaper .5s both ease-in;
+	*/
+}
+.page-contact.ng-enter {
+	-webkit-animation: slideInUp 0.5s both ease-in;
+	-moz-animation: slideInUp 0.5s both ease-in;
+	animation: slideInUp 0.5s both ease-in;
+}
+
+/* rotate and fall */
+@-webkit-keyframes rotateFall {
+ 0% {
+-webkit-transform: rotateZ(0deg);
+}
+ 20% {
+-webkit-transform: rotateZ(10deg);
+-webkit-animation-timing-function: ease-out;
+}
+ 40% {
+-webkit-transform: rotateZ(17deg);
+}
+ 60% {
+-webkit-transform: rotateZ(16deg);
+}
+ 100% {
+-webkit-transform: translateY(100%) rotateZ(17deg);
+}
+}
+@-moz-keyframes rotateFall {
+ 0% {
+-moz-transform: rotateZ(0deg);
+}
+ 20% {
+-moz-transform: rotateZ(10deg);
+-moz-animation-timing-function: ease-out;
+}
+ 40% {
+-moz-transform: rotateZ(17deg);
+}
+ 60% {
+-moz-transform: rotateZ(16deg);
+}
+ 100% {
+-moz-transform: translateY(100%) rotateZ(17deg);
+}
+}
+@keyframes rotateFall {
+ 0% {
+transform: rotateZ(0deg);
+}
+ 20% {
+transform: rotateZ(10deg);
+animation-timing-function: ease-out;
+}
+ 40% {
+transform: rotateZ(17deg);
+}
+ 60% {
+transform: rotateZ(16deg);
+}
+ 100% {
+transform: translateY(100%) rotateZ(17deg);
+}
+}
+
+/* scale up */
+@keyframes scaleUp {
+ from {
+opacity: 0.3;
+transform: scale(0.8);
+}
+}
+@-moz-keyframes scaleUp {
+ from {
+opacity: 0.3;
+-moz-transform: scale(0.8);
+}
+}
+@-webkit-keyframes scaleUp {
+ from {
+opacity: 0.3;
+-webkit-transform: scale(0.8);
+}
+}
+
+/* slide in from the right */
+@keyframes slideInRight {
+ from {
+transform:translateX(100%);
+}
+ to {
+transform: translateX(0);
+}
+}
+@-moz-keyframes slideInRight {
+ from {
+-moz-transform:translateX(100%);
+}
+ to {
+-moz-transform: translateX(0);
+}
+}
+@-webkit-keyframes slideInRight {
+ from {
+-webkit-transform:translateX(100%);
+}
+ to {
+-webkit-transform: translateX(0);
+}
+}
+
+/* slide in from the bottom */
+@keyframes slideInUp {
+ from {
+transform:translateY(100%);
+}
+ to {
+transform: translateY(0);
+}
+}
+@-moz-keyframes slideInUp {
+ from {
+-moz-transform:translateY(100%);
+}
+ to {
+-moz-transform: translateY(0);
+}
+}
+@-webkit-keyframes slideInUp {
+ from {
+-webkit-transform:translateY(100%);
+}
+ to {
+-webkit-transform: translateY(0);
+}
+}
+
+/* slide in from the bottom */
+@keyframes slideOutLeft {
+ to {
+transform: translateX(-100%);
+}
+}
+@-moz-keyframes slideOutLeft {
+ to {
+-moz-transform: translateX(-100%);
+}
+}
+@-webkit-keyframes slideOutLeft {
+ to {
+-webkit-transform: translateX(-100%);
+}
+}
+
+/* rotate out newspaper */
+@-webkit-keyframes rotateOutNewspaper {
+ to {
+-webkit-transform: translateZ(-3000px) rotateZ(360deg);
+opacity: 0;
+}
+}
+@-moz-keyframes rotateOutNewspaper {
+ to {
+-moz-transform: translateZ(-3000px) rotateZ(360deg);
+opacity: 0;
+}
+}
+@keyframes rotateOutNewspaper {
+ to {
+transform: translateZ(-3000px) rotateZ(360deg);
+opacity: 0;
+}
+}
+
+input:not([type]).valid+label:after, input:not([type]):focus.valid+label:after, input[type=text].valid+label:after, input[type=text]:focus.valid+label:after, input[type=password].valid+label:after, input[type=password]:focus.valid+label:after, input[type=email].valid+label:after, input[type=email]:focus.valid+label:after, input[type=url].valid+label:after, input[type=url]:focus.valid+label:after, input[type=time].valid+label:after, input[type=time]:focus.valid+label:after, input[type=date].valid+label:after, input[type=date]:focus.valid+label:after, input[type=datetime-local].valid+label:after, input[type=datetime-local]:focus.valid+label:after, input[type=tel].valid+label:after, input[type=tel]:focus.valid+label:after, input[type=number].valid+label:after, input[type=number]:focus.valid+label:after, input[type=search].valid+label:after, input[type=search]:focus.valid+label:after, textarea.materialize-textarea.valid+label:after, textarea.materialize-textarea:focus.valid+label:after {
+    color: #40a8e4 !important;
+}
+
+
+.ion-loader {
+  display: block;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  left: 50%;
+  top: 90%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background: #fff;
+  box-shadow: 0 3px 15px -5px rgba(0, 0, 0, 0.35);
+  border-radius: 50%;
+  transition: all 500ms cubic-bezier(0.5, 1.25, 0.5, 1.25);
+}
+.ion-loader.ion-show {
+  top: 50%;
+  opacity: 1;
+  visibility: visible;
+}
+.ion-loader.ion-hide {
+  top: 90%;
+  opacity: 0;
+  visibility: hidden;
+}
+.ion-loader .ion-loader-circle {
+  -webkit-animation: rotate 2s linear infinite;
+          animation: rotate 2s linear infinite;
+  position: relative;
+  height: 80px;
+  width: 80px;
+}
+.ion-loader .ion-loader-circle .ion-loader-path {
+  position: absolute;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: square;
+  stroke-width: 5px;
+  -webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+          animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124;
+  }
+}
+@-webkit-keyframes color {
+  100%,
+  0% {
+    stroke: #0193d7;
+  }
+  40% {
+    stroke: #40c2fe;
+  }
+  66% {
+    stroke: #0193d7;
+  }
+  80%,
+  90% {
+    stroke: #014e71;
+  }
+}
+@keyframes color {
+  100%,
+  0% {
+    stroke: #0193d7;
+  }
+  40% {
+    stroke: #40c2fe;
+  }
+  66% {
+    stroke: #0193d7;
+  }
+  80%,
+  90% {
+    stroke: #014e71;
+  }
+}
