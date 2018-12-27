@@ -6,38 +6,38 @@
 
 
 
-			<div class='row'>
-              <div class='input-field col s10 offset-s1'>
-                <input class='validate' type='tel' name='telefono' id='telefono' ng-model="telefono" required/>
-                <label for='telefono'>Teléfono Contacto</label>
+			<div class="row">
+              <div class="input-field col s10 offset-s1">
+                <input class="validate" type="tel" name="telefono" id="telefono" ng-model="telefono" required/>
+                <label for="telefono">Teléfono Contacto</label>
               </div>
             </div>
 
-			<div class='row'>
-              <div class='input-field col s10 offset-s1'>
-                <input class='validate' type='email' name='email' id='email' ng-model="email" required/>
-                <label for='email'>Email</label>
+			<div class="row">
+              <div class="input-field col s10 offset-s1">
+                <input class="validate" type="email" name="email" id="email" ng-model="email" required/>
+                <label for="email">Email</label>
               </div>
             </div>
 
-            <div class='row'>
-              <div class='input-field col s10 offset-s1'>
-                <input class='validate' type='text' name='equipo' id='equipo' ng-model="equipo" required/>
-                <label for='equipo'>Equipo</label>
+            <div class="row">
+              <div class="input-field col s10 offset-s1">
+                <input class="validate" type="text" name="equipo" id="equipo" ng-model="equipo" required pattern=".*\S+.*"/>
+                <label for="equipo">Equipo</label>
               </div>
             </div>
             
-            <div class='row'>
-              <div class='input-field col s10 offset-s1'>
-                <input class='validate' type='text' name='comentarios' id='comentarios' ng-model="comentarios" required/>
-                <label for='comentarios'>Comentarios</label>
+            <div class="row">
+              <div class="input-field col s10 offset-s1">
+                <input class="validate" type="text" name="comentarios" id="comentarios" ng-model="comentarios" required pattern=".*\S+.*"/>
+                <label for="comentarios">Comentarios</label>
               </div>
             </div>
 
             <br />
             <center>
-              <div class='row'>
-                <button type='submit' name='btn_enviar' class='boton' ng-disabled="loginform.$invalid">Enviar</button>
+              <div class="row">
+                <button type="submit" name="btn_enviar" class="boton" ng-disabled="loginform.$invalid">Enviar</button>
               </div>
             </center>
           </form>

@@ -1,53 +1,53 @@
-<h2 class="seccion">agendar mantención</h2>
+<h2 class="seccion">AGENDAR MANTENCI&Oacute;N</h2>
 
       <div class="container">
         <div class="row">
           <form class="col s12" method="post" ng-submit="enviar()">
-            <div class='row'>
-              <div class='col s12'>
+            <div class="row">
+              <div class="col s12">
               </div>
             </div>
 
 
-            <div class='row'>
-              <div class='input-field col s10 offset-s1'>
-                <input class='validate' type='text' name='equipo' id='equipo' ng-model="equipo" required/>
-                <label for='equipo'>Equipo</label>
+            <div class="row">
+              <div class="input-field col s10 offset-s1">
+                <input class="validate" type="text" name="equipo" id="equipo" ng-model="equipo" required pattern=".*\S+.*"/>
+                <label for="equipo">Equipo</label>
               </div>
             </div>
 
-			<div class='row'>
-              <div class='input-field col s10 offset-s1'>
-                <input class='validate' type='text' name='modelo' id='modelo' ng-model="modelo" required/>
-                <label for='modelo'>Modelo</label>
+			<div class="row">
+              <div class="input-field col s10 offset-s1">
+                <input class="validate" type="text" name="modelo" id="modelo" ng-model="modelo" required pattern=".*\S+.*"/>
+                <label for="modelo">Modelo</label>
               </div>
             </div>
 
-			<div class='row'>
-              <div class='input-field col s10 offset-s1'>
-                <input class='validate datepicker' type='date' name='fecha_desde' id='fecha_desde' ng-model="fecha_desde" ng-change="ocultar(1)" required/>
-                <label ng-style="fecha_desde_label" for='fecha_desde'>Fecha Desde</label>
+			<div class="row">
+              <div class="input-field col s10 offset-s1">
+                <input class="validate datepicker" type="date" name="fecha_desde" id="fecha_desde" ng-model="fecha_desde" ng-change="ocultar(1)" required/>
+                <label ng-style="fecha_desde_label" for="fecha_desde">Fecha Desde</label>
               </div>
             </div>
 
-			<div class='row'>
-              <div class='input-field col s10 offset-s1'>
-                <input class='validate datepicker' type='date' name='fecha_hasta' id='fecha_hasta' ng-model="fecha_hasta" ng-change="ocultar(2)" required/>
-                <label ng-style="fecha_hasta_label" for='fecha_hasta'>Fecha Hasta</label>
+			<div class="row">
+              <div class="input-field col s10 offset-s1">
+                <input class="validate datepicker" type="date" name="fecha_hasta" id="fecha_hasta" ng-model="fecha_hasta" ng-change="ocultar(2)" required/>
+                <label ng-style="fecha_hasta_label" for="fecha_hasta">Fecha Hasta</label>
               </div>
             </div>
 
-			<div class='row'>
-              <div class='input-field col s10 offset-s1'>
-                <textarea class='validate materialize-textarea' name='comentarios' id='comentarios' ng-model="comentarios" required></textarea>
+			<div class="row">
+              <div class="input-field col s10 offset-s1">
+                <textarea class="validate materialize-textarea" name="comentarios" id="comentarios" ng-model="comentarios" required pattern=".*\S+.*"></textarea>
 				<label for="comentarios">Comentarios</label>
               </div>
             </div>
 
             <br />
             <center>
-              <div class='row'>
-                <button type='submit' name='btn_enviar' class='boton' ng-disabled="loginform.$invalid">Enviar</button>
+              <div class="row">
+                <button type="submit" name="btn_enviar" class="boton" ng-disabled="loginform.$invalid">Enviar</button>
               </div>
             </center>
           </form>

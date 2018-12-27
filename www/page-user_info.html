@@ -8,7 +8,7 @@
 
             <div class='row'>
               <div class='input-field col s10 offset-s1'>
-                <input class='validate' type='text' name='nombre' id='nombre' ng-model="nombre" required/>
+                <input class='validate' type='text' name='nombre' id='nombre' ng-model="nombre" required pattern=".*\S+.*"/>
                 <label for='nombre' class="active">Nombre</label>
               </div>
             </div>
@@ -30,14 +30,14 @@
 
             <div class='row'>
               <div class='input-field col s10 offset-s1'>
-                <input class='validate' type='text' name='empresa' id='empresa' ng-model="empresa" required/>
+                <input class='validate' type='text' name='empresa' id='empresa' ng-model="empresa" required pattern=".*\S+.*"/>
                 <label for='empresa' class="active">Empresa</label>
               </div>
             </div>
 
             <div class='row'>
               <div class='input-field col s10 offset-s1'>
-                <input class='validate' type='text' name='cargo' id='cargo' ng-model="cargo" required/>
+                <input class='validate' type='text' name='cargo' id='cargo' ng-model="cargo" required pattern=".*\S+.*"/>
                 <label for='cargo' class="active">Cargo</label>
               </div>
             </div>
