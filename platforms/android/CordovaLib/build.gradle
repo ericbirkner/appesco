@@ -24,10 +24,10 @@ ext {
 
 buildscript {
     repositories {
-        jcenter()
         maven {
             url "https://maven.google.com"
         }
+        jcenter()
         google()
     }
 
@@ -43,7 +43,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 group = 'org.apache.cordova'
-version = '7.1.1'
+version = '7.1.2'
 
 android {
     compileSdkVersion cdvCompileSdkVersion
@@ -74,7 +74,7 @@ android {
         exclude 'META-INF/NOTICE'
     }
     defaultConfig {
-        minSdkVersion = 19
+        minSdkVersion = 26
     }
 }
 
@@ -133,9 +133,9 @@ bintray {
         licenses = ['Apache-2.0']
         labels = ['android', 'cordova', 'phonegap']
         version {
-            name = '7.1.1'
+            name = '7.1.2'
             released  = new Date()
-            vcsTag = '7.1.1'
+            vcsTag = '7.1.2'
         }
     }
 }

@@ -1,23 +1,23 @@
 {
     "logs": [
         {
-            "outputFile": "/Applications/XAMPP/xamppfiles/htdocs/phonegap/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "outputFile": "/Applications/XAMPP/xamppfiles/htdocs/PESCO/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
-                    "source": "/Applications/XAMPP/xamppfiles/htdocs/phonegap/platforms/android/app/src/main/res/values/strings.xml",
+                    "source": "/Applications/XAMPP/xamppfiles/htdocs/PESCO/platforms/android/app/src/main/res/values/strings.xml",
                     "from": {
                         "startLines": "4,2,3",
                         "startColumns": "4,4,4",
-                        "startOffsets": "161,55,102",
-                        "endColumns": "63,46,58",
-                        "endOffsets": "220,97,156"
+                        "startOffsets": "157,55,98",
+                        "endColumns": "63,42,58",
+                        "endOffsets": "216,93,152"
                     },
                     "to": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
-                        "startOffsets": "55,119,166",
-                        "endColumns": "63,46,58",
-                        "endOffsets": "114,161,220"
+                        "startOffsets": "55,119,162",
+                        "endColumns": "63,42,58",
+                        "endOffsets": "114,157,216"
                     }
                 }
             ]
