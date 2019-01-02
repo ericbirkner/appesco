@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- CSS -->
+	<!-- load bootstrap (bootswatch version) -->
+   	<link rel="stylesheet" href="css/materialize.min.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	
+</head>
+
+<!-- apply our angular app -->
+<body ng-app="animateApp">
+<div class="barra_top"></div>
+<header>
+	<nav role="navigation">
+		<div class="nav-wrapper container">
+			<a id="volver" href="#home" class="left">volver</a>
+
+			<a href="javascript:void(0)" data-activates="main-menu-mobile" class="button-collapse right show-on-large"><i class="material-icons">menu</i></a>
+			<ul id="main-menu-mobile" class="side-nav">
+				<li><a href="#home" class="waves-effect waves-teal"><i class="material-icons left">home</i>Inicio</a></li>
+				<li><a href="#editar-datos" class="waves-effect waves-teal"><i class="material-icons left">person</i>Mis Datos</a></li>
+				<li><a href="#salir" class="waves-effect waves-teal"><i class="material-icons left">exit_to_app</i>Salir</a></li>
+			</ul>
+		</div>
+	</nav>
+
+  <div class="row">
+  	<div class="col s6 offset-s3">
+  		<center class="logo-pesco">
+  			<img class="responsive-img" src="img/logo_pesco.png" />
+  		</center>
+  	</div>
+
+  </div>
+
+</header>
+
+<ion-loader></ion-loader>
+
+<!-- inject our views using ng-view -->
+<!-- each angular controller applies a different class here -->
+<div class="page {{ pageClass }}" ng-view></div>
+
+
+<footer>
+  <div class="row">
+    <div class="col s3 m3">
+		<a href="#postventa"><img src="img/ico-mantencion.png" class="icon">
+      	<div class="desc">Mantención</div>
+		</a>	
+    </div>
+    <div class="col s3 m3">
+      <a href="#sos"><img src="img/ico-sos.png" class="icon">
+      	<div class="desc">sos</div>
+	  </a>	
+    </div>
+    <div class="col s3 m3">
+		<a href="#ventas"><img src="img/ico-cotizaciones.png" class="icon">
+      	<div class="desc">cotizaciones</div>
+		</a>
+    </div>
+    <div class="col s3 m3">
+		<a href="#sucursales"><img src="img/ico-sucursales.png" class="icon">
+      	<div class="desc">sucursales</div>
+		</a>
+    </div>
+  </div>
+</footer>
+
+<!-- JS -->
+<script src="js/jquery.min.js"></script>
+<script type="text/javascript" src="cordova.js"></script>
+
+<!-- load angular, ngRoute, ngAnimate -->
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/angular-animate.min.js"></script>
+<script src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
