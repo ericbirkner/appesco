@@ -22,7 +22,7 @@ body {
 }
 
 main {
-	
+
 }
 
 a, .celeste {
@@ -119,6 +119,11 @@ button.boton{
 	text-transform: uppercase;
 }
 
+button.boton:disabled,
+button.boton[disabled]{
+  opacity: 0.5;
+}
+
 .page {
 	bottom: 0;
 	text-align: center;
@@ -145,7 +150,7 @@ a.back{
 .sucursales .row.fila{
 	margin: 0;
 	padding: 0;
-	
+
 }
 
 .sucursales .nombre{
@@ -216,7 +221,7 @@ a.nolink{
 }
 
 textarea#problema, textarea#comentarios{
-	
+
 }
 
 footer{

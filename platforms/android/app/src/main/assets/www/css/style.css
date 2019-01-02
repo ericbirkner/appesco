@@ -16,10 +16,13 @@ body {
 	background: url(../img/filete.png) repeat-x;
 	height: 10px;
 	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
 }
 
 main {
-	
+
 }
 
 a, .celeste {
@@ -116,6 +119,11 @@ button.boton{
 	text-transform: uppercase;
 }
 
+button.boton:disabled,
+button.boton[disabled]{
+  opacity: 0.5;
+}
+
 .page {
 	bottom: 0;
 	text-align: center;
@@ -142,7 +150,7 @@ a.back{
 .sucursales .row.fila{
 	margin: 0;
 	padding: 0;
-	
+
 }
 
 .sucursales .nombre{
@@ -213,7 +221,7 @@ a.nolink{
 }
 
 textarea#problema, textarea#comentarios{
-	
+
 }
 
 footer{
