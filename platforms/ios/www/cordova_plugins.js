@@ -373,78 +373,6 @@ module.exports = [
       "navigator.notification",
       "navigator"
     ]
-  },
-  {
-    "id": "cordova-plugin-console.console",
-    "file": "plugins/cordova-plugin-console/www/console-via-logger.js",
-    "pluginId": "cordova-plugin-console",
-    "clobbers": [
-      "console"
-    ]
-  },
-  {
-    "id": "cordova-plugin-console.logger",
-    "file": "plugins/cordova-plugin-console/www/logger.js",
-    "pluginId": "cordova-plugin-console",
-    "clobbers": [
-      "cordova.logger"
-    ]
-  },
-  {
-    "id": "cordova-plugin-device-motion.Acceleration",
-    "file": "plugins/cordova-plugin-device-motion/www/Acceleration.js",
-    "pluginId": "cordova-plugin-device-motion",
-    "clobbers": [
-      "Acceleration"
-    ]
-  },
-  {
-    "id": "cordova-plugin-device-motion.accelerometer",
-    "file": "plugins/cordova-plugin-device-motion/www/accelerometer.js",
-    "pluginId": "cordova-plugin-device-motion",
-    "clobbers": [
-      "navigator.accelerometer"
-    ]
-  },
-  {
-    "id": "cordova-plugin-device-orientation.CompassError",
-    "file": "plugins/cordova-plugin-device-orientation/www/CompassError.js",
-    "pluginId": "cordova-plugin-device-orientation",
-    "clobbers": [
-      "CompassError"
-    ]
-  },
-  {
-    "id": "cordova-plugin-device-orientation.CompassHeading",
-    "file": "plugins/cordova-plugin-device-orientation/www/CompassHeading.js",
-    "pluginId": "cordova-plugin-device-orientation",
-    "clobbers": [
-      "CompassHeading"
-    ]
-  },
-  {
-    "id": "cordova-plugin-device-orientation.compass",
-    "file": "plugins/cordova-plugin-device-orientation/www/compass.js",
-    "pluginId": "cordova-plugin-device-orientation",
-    "clobbers": [
-      "navigator.compass"
-    ]
-  },
-  {
-    "id": "cordova-plugin-splashscreen.SplashScreen",
-    "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-    "pluginId": "cordova-plugin-splashscreen",
-    "clobbers": [
-      "navigator.splashscreen"
-    ]
-  },
-  {
-    "id": "cordova-plugin-statusbar.statusbar",
-    "file": "plugins/cordova-plugin-statusbar/www/statusbar.js",
-    "pluginId": "cordova-plugin-statusbar",
-    "clobbers": [
-      "window.StatusBar"
-    ]
   }
 ];
 module.exports.metadata = 
@@ -461,13 +389,7 @@ module.exports.metadata =
   "cordova-plugin-inappbrowser": "1.7.2",
   "cordova-plugin-media-capture": "1.4.3",
   "cordova-plugin-network-information": "1.3.4",
-  "cordova-plugin-vibration": "2.1.6",
-  "cordova-plugin-console": "1.0.7",
-  "cordova-plugin-device-motion": "1.2.5",
-  "cordova-plugin-device-orientation": "1.0.7",
-  "cordova-plugin-splashscreen": "3.2.2",
-  "cordova-plugin-statusbar": "2.1.3",
-  "cordova-plugin-whitelist": "1.2.2"
+  "cordova-plugin-vibration": "2.1.6"
 };
 // BOTTOM OF METADATA
 });
