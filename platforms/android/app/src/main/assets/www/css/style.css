@@ -194,6 +194,18 @@ a.back{
 	color: #222222;
 }
 
+.sucursales .btn_action a{
+	color: #fff;
+	background: url(../img/bkg-cyan.png) repeat-x;
+	background-size: auto 100%;
+	display: inline-block;
+	width: 45%;
+	margin: 5px 3% 0 0;
+	padding: 3px 0 0 0;
+	text-align: center;
+	border-radius: 3px;
+}
+
 a.nolink{
 	color: #545255;
 }

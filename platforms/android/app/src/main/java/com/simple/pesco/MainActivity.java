@@ -17,7 +17,7 @@
        under the License.
  */
 
-package cl.simple.pesco;
+package com.simple.pesco;
 
 import android.os.Bundle;
 import org.apache.cordova.*;
