@@ -22,10 +22,10 @@
 // Default parameter values including image size can be changed in `config.xml`
 var splashImageWidth = 170;
 var splashImageHeight = 200;
-var position = { x: 0, y: 0, width: splashImageWidth, height: splashImageHeight }; 
+var position = { x: 0, y: 0, width: splashImageWidth, height: splashImageHeight };
 var localSplash; // the image to display
 var localSplashImage;
-var bgColor = "#464646";
+var bgColor = "#00DAEF";
 var imageSrc = '/img/logo.png';
 var splashScreenDelay = 3000; // in milliseconds
 var showSplashScreen = true; // show splashcreen by default
@@ -135,4 +135,3 @@ function showAndHide() {
 module.exports = SplashScreen;
 
 require("cordova/exec/proxy").add("SplashScreen", SplashScreen);
-
